@@ -4,17 +4,29 @@ import { View } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
 import Home from './panels/Home';
-import Quiz from './panels/Quiz';
+import ChallengeList from './panels/ChallengeList';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       activePanel: 'home',
-      user: null,
+      user: null
     };
   }
+
+  render() {
+    return (
+      <View activePanel={this.state.activePanel}>
+        <Home id="home" user={this.state.user} go={this.go} />
+        <ChallengeList id="challenge-list" go={this.go} />
+      </View>
+    );
+  }
+
+  go = (e) => {
+    this.setState({ activePanel: e.currentTarget.dataset.to })
+  };
 
   componentDidMount() {
     connect.subscribe((e) => {
@@ -27,18 +39,5 @@ export default class App extends React.Component {
       }
     });
     connect.send('VKWebAppGetUserInfo', {});
-  }
-
-  go = (e) => {
-    this.setState({ activePanel: e.currentTarget.dataset.to })
-  };
-
-  render() {
-    return (
-      <View activePanel={this.state.activePanel}>
-        <Home id="home" user={this.state.user} go={this.go} />
-        <Quiz id="quiz" go={this.go} />
-      </View>
-    );
   }
 }

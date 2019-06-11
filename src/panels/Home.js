@@ -1,9 +1,9 @@
 import React from 'react';
-import { Panel, ListItem, Button, Group, Div, Avatar, PanelHeader } from '@vkontakte/vkui';
+import { Panel, ListItem, Button, Group, Div, Avatar, PanelHeader, Progress, InfoRow } from '@vkontakte/vkui';
 
 const Home = ({ id, go, user }) => (
   <Panel id={id}>
-    <PanelHeader>ｓａｍｐｌｅ ａｐｐ</PanelHeader>
+    <PanelHeader>Квест</PanelHeader>
     {user &&
       <Group title="Привет">
         <ListItem
@@ -13,11 +13,30 @@ const Home = ({ id, go, user }) => (
         </ListItem>
       </Group>}
 
-    <Group title="Навигация">
+    <Group title="Оптоклоны и голограммы">
       <Div>
-        <Button size="xl" level="2" onClick={go} data-to="quiz">
-          Квиз
-        </Button>
+        <InfoRow title="Пройдено 2 из 10"><Progress value={20} /></InfoRow>
+      </Div>
+      <Div>
+        <Button size="l" level="1" stretched={true} onClick={go} data-to="challenge-list">Продолжить</Button>
+      </Div>
+    </Group>
+
+    <Group title="Каталог Аббе">
+      <Div>
+        <InfoRow title="Пройдено 0 из 10"><Progress value={0} /></InfoRow>
+      </Div>
+      <Div>
+        <Button size="l" level="2" stretched={true} onClick={go} data-to="home">Начать</Button>
+      </Div>
+    </Group>
+
+    <Group title="Свет">
+      <Div>
+        <InfoRow title="Пройдено 0 из 10"><Progress value={0} /></InfoRow>
+      </Div>
+      <Div>
+        <Button size="l" level="2" stretched={true} onClick={go} data-to="home">Начать</Button>
       </Div>
     </Group>
   </Panel>
