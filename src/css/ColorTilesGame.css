@@ -1,3 +1,16 @@
+.tile-directions, .tile-help {
+  text-align: center;
+  padding: 16px;
+}
+
+.tile-directions {
+  font-size: 1.25em;
+}
+
+.tile-help {
+  color: var(--text_secondary);
+}
+
 .tile-button {
   margin: 8px;
   display: inline-block;
