@@ -1,0 +1,17 @@
+.tile-button {
+  margin: 8px;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  border-radius: 4px;
+
+  /* Reset default button styles */
+  border: none;
+  outline: inherit;
+}
+
+.tile-row {
+  display: flex;
+  justify-content: center;
+}

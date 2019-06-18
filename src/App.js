@@ -5,6 +5,7 @@ import '@vkontakte/vkui/dist/vkui.css';
 
 import Home from './panels/Home';
 import ChallengeList from './panels/ChallengeList';
+import ColorTilesGame from './panels/ColorTilesGame';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -20,6 +21,7 @@ export default class App extends React.Component {
       <View activePanel={this.state.activePanel}>
         <Home id="home" user={this.state.user} go={this.go} />
         <ChallengeList id="challenge-list" go={this.go} />
+        <ColorTilesGame id="color-tiles-game" go={this.go} />
       </View>
     );
   }

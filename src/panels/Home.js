@@ -13,6 +13,12 @@ const Home = ({ id, go, user }) => (
         </ListItem>
       </Group>}
 
+    <Group title="Выбери свой цвет">
+      <Div>
+        <Button size="l" level="1" stretched={true} onClick={go} data-to="color-tiles-game">Поехали</Button>
+      </Div>
+    </Group>
+
     <Group title="Оптоклоны и голограммы">
       <Div>
         <InfoRow title="Пройдено 2 из 10"><Progress value={20} /></InfoRow>
