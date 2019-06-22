@@ -1,3 +1,8 @@
 .button-row > button:not(:last-child) {
   margin-right: 8px;
 }
+
+.monster-sprite {
+  display: block;
+  margin: 0 auto;
+}

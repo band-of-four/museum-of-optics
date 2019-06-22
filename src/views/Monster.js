@@ -32,7 +32,7 @@ export default class Monster extends React.Component {
           {name}
         </PanelHeader>
         <Div style={{ textAlign: "center" }}>
-          <img alt={name} src={sprite} />
+          <img className="monster-sprite" alt={name} src={sprite} />
           <p>{description}</p>
           <div className="button-row">
             <Button size="l" level="1" onClick={this.setView('monster-action')}>В бой</Button>
@@ -81,8 +81,9 @@ export default class Monster extends React.Component {
     });
   }
 
-  renderResultPanel({ name }) {
+  renderResultPanel({ name, spriteDefeated }) {
     const completed = <>
+      <img className="monster-sprite" alt={name} src={spriteDefeated} />
       <p>Поздравляем, ты победил!</p>
       <Button size="l" level="1" onClick={this.props.go} data-to="quest-map">Далее</Button>
     </>;

@@ -5,6 +5,7 @@ const monsters = {
   2: {
     name: 'Утиная типизация',
     sprite: seIfmoRu,
+    spriteDefeated: seIfmoRu,
     description: 'И сколько в твоем интерпретаторе сегфолтов?',
     correctQr: 'test',
     hint: (
