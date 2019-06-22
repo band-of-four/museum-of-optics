@@ -11,8 +11,18 @@ export default class ColorTilesGame extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      directions: 'Приготовился? Нажми на любой цвет:',
-      answers: 0
+      directions: 'Синяя или красная?',
+      answers: 0,
+      field: [
+        ['g', 'y', 'r', 'g', 'b', 'r'],
+        ['r', 'b', 'y', 'r', 'g', 'y'],
+        ['y', 'r', 'g', 'b', 'y', 'g'],
+        ['r', 'b', 'y', 'r', 'b', 'r'],
+        ['b', 'r', 'g', 'y', 'r', 'y'],
+        ['r', 'g', 'b', 'r', 'b', 'g']
+      ],
+      expectedTileColor: '',
+      initTask: true
     };
   }
 
@@ -25,27 +35,50 @@ export default class ColorTilesGame extends React.Component {
     this.setState({ directions: color, answers: this.state.answers + 1 });
   }
 
+  nextTile = (x, y) => () => {
+
+  }
+
   render() {
-    return (
-      <Panel id={this.props.id} theme="white">
-        <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="home" />}>
-          Какой цвет твой?
-        </PanelHeader>
-        <Div>
-          <div className="tile-directions">{this.state.directions}</div>
-          <div className="tile-row">
-            <button onClick={this.tileSelected('blue')} className="tile-button" style={{ backgroundImage: `url('${blueTile}')` }} />
-            <button onClick={this.tileSelected('red')} className="tile-button" style={{ backgroundImage: `url('${redTile}')` }} />
-          </div>
-          <div className="tile-row">
-            <button onClick={this.tileSelected('yellow')} className="tile-button" style={{ backgroundImage: `url('${yellowTile}')` }} />
-            <button onClick={this.tileSelected('green')} className="tile-button" style={{ backgroundImage: `url('${greenTile}')` }} />
-          </div>
-          <div className="tile-help">
-            Встань лицом к каталогу Аббе
-          </div>
-        </Div>
-      </Panel>
-    );
+    if (!this.state.initTask) {
+      return (
+        <Panel id={this.props.id} theme="white">
+          <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="home" />}>
+            Какой цвет твой?
+          </PanelHeader>
+          <Div>
+            <div className="tile-directions">{this.state.directions}</div>
+            <div className="tile-row">
+              <button onClick={this.tileSelected('b')} className="tile-button" style={{ backgroundImage: `url('${blueTile}')` }} />
+              <button onClick={this.tileSelected('r')} className="tile-button" style={{ backgroundImage: `url('${redTile}')` }} />
+            </div>
+            <div className="tile-row">
+              <button onClick={this.tileSelected('y')} className="tile-button" style={{ backgroundImage: `url('${yellowTile}')` }} />
+              <button onClick={this.tileSelected('g')} className="tile-button" style={{ backgroundImage: `url('${greenTile}')` }} />
+            </div>
+            <div className="tile-help">
+              Встань лицом к каталогу Аббе
+            </div>
+          </Div>
+        </Panel>
+      );
+    }
+    else {
+      this.state.initTask = false;
+      return (
+        <Panel id={this.props.id} theme="white">
+          <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="home" />}>
+            Какой цвет твой?
+          </PanelHeader>
+          <Div>
+            <div className="tile-directions">{this.state.directions}</div>
+            <div className="tile-row">
+              <button onClick={this.tileSelected('b')} className="tile-button" style={{ backgroundImage: `url('${blueTile}')` }} />
+              <button onClick={this.tileSelected('r')} className="tile-button" style={{ backgroundImage: `url('${redTile}')` }} />
+            </div>
+          </Div>
+        </Panel>
+      );
+    }
   }
 }
