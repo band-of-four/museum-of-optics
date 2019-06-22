@@ -33,7 +33,7 @@ export default class App extends React.Component {
 
   go = (e) => {
     const { to, ...props } = e.currentTarget.dataset;
-    this.setState({ view: to, perViewProps: { [to]: props, ...this.state.perViewProps } });
+    this.setState({ view: to, perViewProps: { ...this.state.perViewProps, [to]: props } });
   };
 
   /* callbacks is an object of { event type (string): callback function } */
