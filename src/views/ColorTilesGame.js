@@ -21,9 +21,9 @@ export default class ColorTilesGame extends React.Component {
         ['b', 'r', 'g', 'y', 'r', 'y'],
         ['r', 'g', 'b', 'r', 'b', 'g']
       ],
-      expectedPosition: [0, 0],
+      expectedPosition: [-1, -1],
       initTask: true,
-      currentPosition: [0, 0]
+      currentPosition: [-1, -1]
     };
   }
 
@@ -36,49 +36,55 @@ export default class ColorTilesGame extends React.Component {
       return;
     }
     this.setState({ currentPosition: this.state.expectedPosition });
-    this.nextTile();
+    this.nextTile(this.state.expectedPosition[0], this.state.expectedPosition[1]);
 
     this.setState({ answers: this.state.answers + 1 });
   }
 
-  nextTile = () => () => {
+  nextTile = (x, y) => {
     var direction = Math.floor(Math.random() * 4); // random int [0; 3]
     // 0 - left, 1 - up, 2 - right, 3 - down
-    while ((direction == 0 && this.state.currentPosition[0] == 0) ||
-      (direction == 1 && this.state.currentPosition[1] == 0) ||
-      (direction == 2 && this.state.currentPosition[0] == 5) ||
-      (direction == 3 && this.state.currentPosition[1] == 5))
+    while (
+      (direction == 0 && y == 0) ||
+      (direction == 1 && x == 0) ||
+      (direction == 2 && y == 5) ||
+      (direction == 3 && x == 5)
+    )
       direction = Math.floor(Math.random() * 4);
-    var stringDirection = '', offset = 0, currentPosition = this.state.currentPosition;
+    var stringDirection = '', offset = 0;
     switch (direction) {
       case 0:
         stringDirection = 'left';
-        offset = 1 + Math.floor(Math.random * (currentPosition[1]));
-        this.setState({ expectedPosition: [currentPosition[0], currentPosition[1] - offset] });
+        offset = 1 + Math.floor(Math.random() * y);
+        this.setState({ expectedPosition: [x, y - offset] });
         break;
       case 1:
         stringDirection = 'up';
-        offset = 1 + Math.floor(Math.random * (currentPosition[0]));
-        this.setState({ expectedPosition: [currentPosition[0] - offset, currentPosition[1]] });
+        offset = 1 + Math.floor(Math.random() * x);
+        this.setState({ expectedPosition: [x - offset, y] });
         break;
       case 2:
         stringDirection = 'right';
-        offset = 1 + Math.floor(Math.random * (5 - currentPosition[1]));
-        this.setState({ expectedPosition: [currentPosition[0], currentPosition[1] + offset] });
+        offset = 1 + Math.floor(Math.random() * (5 - y));
+        this.setState({ expectedPosition: [x, y + offset] });
         break;
       case 3:
         stringDirection = 'down';
-        offset = 1 + Math.floor(Math.random * (5 - currentPosition[0]));
-        this.setState({ expectedPosition: [currentPosition[0] + offset, currentPosition[1]] });
+        offset = 1 + Math.floor(Math.random() * (5 - x));
+        this.setState({ expectedPosition: [x + offset, y] });
+        break;
     }
     this.setState({ directions: `${stringDirection}, ${offset}` });
   }
 
   initTaskTileSelected = (color) => () => {
+    var x = 5, y;
     if (color == 'b')
-      this.setState({ initTask: false, currentPosition: [5, 2] });
+      y = 2;
     else
-      this.setState({ initTask: false, currentPosition: [5, 3] });
+      y = 3;
+    this.setState({ initTask: false, currentPosition: [x, y] });
+    this.nextTile(x, y);
   }
 
   render() {
