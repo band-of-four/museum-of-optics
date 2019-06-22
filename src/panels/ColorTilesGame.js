@@ -22,11 +22,19 @@ export default class ColorTilesGame extends React.Component {
         ['r', 'g', 'b', 'r', 'b', 'g']
       ],
       expectedTileColor: '',
-      initTask: true
+      initTask: true,
+      currentPosition: [0, 0]
     };
   }
 
   tileSelected = (color) => () => {
+    if (this.state.initTask) {
+      if (color == 'b')
+        this.setState({ currentPosition: [5, 2] });
+      else
+        this.setState({ currentPosition: [5, 3] });
+      return;
+    }
     if (this.state.answers === 3) {
       this.setState({ directions: 'Поздравляем, ты прошел игру)' });
       return;
