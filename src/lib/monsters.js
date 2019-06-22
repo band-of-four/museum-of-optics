@@ -6,6 +6,7 @@ const monsters = {
     name: 'Утиная типизация',
     sprite: seIfmoRu,
     description: 'И сколько в твоем интерпретаторе сегфолтов?',
+    correctQr: 'test',
     hints: (
       <p>
         Добрый день, я Утинатор, и сегодня я хочу рассказать вам о том,
