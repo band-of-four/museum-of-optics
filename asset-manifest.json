@@ -1,15 +1,20 @@
 {
-  "main.css": "/museum-of-optics/static/css/main.4928973e.chunk.css",
-  "main.js": "/museum-of-optics/static/js/main.15268b8f.chunk.js",
-  "main.js.map": "/museum-of-optics/static/js/main.15268b8f.chunk.js.map",
+  "main.css": "/museum-of-optics/static/css/main.2808dcd7.chunk.css",
+  "main.js": "/museum-of-optics/static/js/main.251deb7e.chunk.js",
+  "main.js.map": "/museum-of-optics/static/js/main.251deb7e.chunk.js.map",
   "runtime~main.js": "/museum-of-optics/static/js/runtime~main.7d119e98.js",
   "runtime~main.js.map": "/museum-of-optics/static/js/runtime~main.7d119e98.js.map",
   "static/css/2.c945ad26.chunk.css": "/museum-of-optics/static/css/2.c945ad26.chunk.css",
-  "static/js/2.385f0936.chunk.js": "/museum-of-optics/static/js/2.385f0936.chunk.js",
-  "static/js/2.385f0936.chunk.js.map": "/museum-of-optics/static/js/2.385f0936.chunk.js.map",
+  "static/js/2.6277ff44.chunk.js": "/museum-of-optics/static/js/2.6277ff44.chunk.js",
+  "static/js/2.6277ff44.chunk.js.map": "/museum-of-optics/static/js/2.6277ff44.chunk.js.map",
   "index.html": "/museum-of-optics/index.html",
-  "precache-manifest.d2284bc69f33e0470434f2cbcdd6652d.js": "/museum-of-optics/precache-manifest.d2284bc69f33e0470434f2cbcdd6652d.js",
+  "precache-manifest.1ba27080acb0f51ff8f0fb692d4aeb20.js": "/museum-of-optics/precache-manifest.1ba27080acb0f51ff8f0fb692d4aeb20.js",
   "service-worker.js": "/museum-of-optics/service-worker.js",
   "static/css/2.c945ad26.chunk.css.map": "/museum-of-optics/static/css/2.c945ad26.chunk.css.map",
-  "static/css/main.4928973e.chunk.css.map": "/museum-of-optics/static/css/main.4928973e.chunk.css.map"
+  "static/css/main.2808dcd7.chunk.css.map": "/museum-of-optics/static/css/main.2808dcd7.chunk.css.map",
+  "static/media/blue.png": "/museum-of-optics/static/media/blue.34464695.png",
+  "static/media/green.png": "/museum-of-optics/static/media/green.1799831c.png",
+  "static/media/red.png": "/museum-of-optics/static/media/red.c083d19b.png",
+  "static/media/se_ifmo_ru.png": "/museum-of-optics/static/media/se_ifmo_ru.ea83b28a.png",
+  "static/media/yellow.png": "/museum-of-optics/static/media/yellow.fc931dc4.png"
 }
