@@ -14,8 +14,14 @@ const Home = ({ id, go, user }) => (
       </Group>}
 
     <Group title="Выбери свой цвет">
-      <Div>
-        <Button size="l" level="1" stretched={true} onClick={go} data-to="color-tiles-game">Поехали</Button>
+      <Div style={{ textAlign: "center" }}>
+        <Button size="l" level="1" onClick={go} data-to="color-tiles-game">Поехали</Button>
+      </Div>
+    </Group>
+
+    <Group title="Карта квеста">
+      <Div style={{ textAlign: "center" }}>
+        <Button size="l" level="1" stretched={true} onClick={go} data-to="quest-map">Посмотреть</Button>
       </Div>
     </Group>
 

@@ -1,0 +1,11 @@
+.map-point {
+  fill: none;
+}
+
+.map-point:hover, .map-point:focus {
+  fill: #dbe3eb;
+}
+
+.map-point--active {
+  fill: #99b0c6;
+}
