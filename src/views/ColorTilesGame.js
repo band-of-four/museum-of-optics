@@ -1,11 +1,11 @@
 import React from 'react';
-import { Panel, PanelHeader, FormLayout, Div } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader, Div } from '@vkontakte/vkui';
 import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack';
 import '../css/ColorTilesGame.css';
-import blueTile from '../img/tile-button-blue.png';
-import yellowTile from '../img/tile-button-yellow.png';
-import redTile from '../img/tile-button-red.png';
-import greenTile from '../img/tile-button-green.png';
+import blueTile from '../img/tiles/blue.png';
+import yellowTile from '../img/tiles/yellow.png';
+import redTile from '../img/tiles/red.png';
+import greenTile from '../img/tiles/green.png';
 
 export default class ColorTilesGame extends React.Component {
   constructor(props) {
@@ -29,10 +29,6 @@ export default class ColorTilesGame extends React.Component {
 
   tileSelected = (color) => () => {
     if (this.state.initTask) {
-      if (color == 'b')
-        this.setState({ currentPosition: [5, 2] });
-      else
-        this.setState({ currentPosition: [5, 3] });
       return;
     }
     if (this.state.answers === 3) {
@@ -47,10 +43,29 @@ export default class ColorTilesGame extends React.Component {
 
   }
 
+  initTaskTileSelected = (color) => () => {
+    if (color == 'b')
+      this.setState({ initTask: false, currentPosition: [5, 2] });
+    else
+      this.setState({ initTask: false, currentPosition: [5, 3] });
+  }
+
   render() {
-    if (!this.state.initTask) {
-      return (
-        <Panel id={this.props.id} theme="white">
+    return (
+      <View id={this.props.id} activePanel={this.state.initTask ? 'color-tiles-init-task' : 'color-tiles-main'}>
+        <Panel id="color-tiles-init-task" theme="white">
+          <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="home" />}>
+            Какой цвет твой?
+          </PanelHeader>
+          <Div>
+            <div className="tile-directions">{this.state.directions}</div>
+            <div className="tile-row">
+              <button onClick={this.initTaskTileSelected('b')} className="tile-button" style={{ backgroundImage: `url('${blueTile}')` }} />
+              <button onClick={this.initTaskTileSelected('r')} className="tile-button" style={{ backgroundImage: `url('${redTile}')` }} />
+            </div>
+          </Div>
+        </Panel>
+        <Panel id="color-tiles-main" theme="white">
           <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="home" />}>
             Какой цвет твой?
           </PanelHeader>
@@ -69,24 +84,7 @@ export default class ColorTilesGame extends React.Component {
             </div>
           </Div>
         </Panel>
-      );
-    }
-    else {
-      this.state.initTask = false;
-      return (
-        <Panel id={this.props.id} theme="white">
-          <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="home" />}>
-            Какой цвет твой?
-          </PanelHeader>
-          <Div>
-            <div className="tile-directions">{this.state.directions}</div>
-            <div className="tile-row">
-              <button onClick={this.tileSelected('b')} className="tile-button" style={{ backgroundImage: `url('${blueTile}')` }} />
-              <button onClick={this.tileSelected('r')} className="tile-button" style={{ backgroundImage: `url('${redTile}')` }} />
-            </div>
-          </Div>
-        </Panel>
-      );
-    }
+      </View>
+    );
   }
 }

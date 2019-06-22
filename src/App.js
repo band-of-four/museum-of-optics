@@ -1,37 +1,37 @@
 import React from 'react';
 import connect from '@vkontakte/vkui-connect';
-import { View } from '@vkontakte/vkui';
+import { Root } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
-import Home from './panels/Home';
-import ColorTilesGame from './panels/ColorTilesGame';
-import QuestMap from './panels/QuestMap';
-import MonsterView from './panels/MonsterView';
+import Home from './views/Home';
+import ColorTilesGame from './views/ColorTilesGame';
+import QuestMap from './views/QuestMap';
+import MonsterView from './views/MonsterView';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activePanel: 'home',
-      activePanelProps: {},
+      view: 'home',
+      perViewProps: {},
       user: null
     };
   }
 
   render() {
     return (
-      <View activePanel={this.state.activePanel}>
+      <Root activeView={this.state.view}>
         <Home id="home" user={this.state.user} go={this.go} />
         <ColorTilesGame id="color-tiles-game" go={this.go} />
         <QuestMap id="quest-map" go={this.go} />
-        <MonsterView id="monster-view" go={this.go} {...this.state.activePanelProps} />
-      </View>
+        <MonsterView id="monster-view" go={this.go} {...this.state.perViewProps['monster-view']} />
+      </Root>
     );
   }
 
   go = (e) => {
     const { to, ...props } = e.currentTarget.dataset;
-    this.setState({ activePanel: to, activePanelProps: props });
+    this.setState({ view: to, perViewProps: { [to]: props, ...this.state.perViewProps } });
   };
 
   componentDidMount() {

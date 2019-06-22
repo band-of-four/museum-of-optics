@@ -1,5 +1,5 @@
 import React from 'react';
-import { Panel, PanelHeader, Div } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader, Div } from '@vkontakte/vkui';
 import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack';
 import '../css/QuestMap.css';
 import { nodeLocations, computeNodeStates } from '../lib/map';
@@ -11,14 +11,14 @@ export default class QuestMap extends React.Component {
 
   render() {
     return (
-      <Panel id={this.props.id} theme="white">
-        <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="home" />}>
-          Карта
-        </PanelHeader>
-        <Div style={{ textAlign: "center" }}>
-          {this.renderSvgMap()}
-        </Div>
-      </Panel>
+      <View id={this.props.id} activePanel="quest-map-main">
+        <Panel id="quest-map-main" theme="white">
+          <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="home" />}>
+            Карта
+          </PanelHeader>
+          <Div style={{ textAlign: "center" }}>{this.renderSvgMap()}</Div>
+        </Panel>
+      </View>
     );
   }
 
