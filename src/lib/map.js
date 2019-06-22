@@ -7,6 +7,12 @@ export const nodeLocations = [
   { x: 30, y: 128, id: 1 }
 ];
 
+export const initialSavestate = {};
+
+export function updateSavestateOnCompletion(oldSavestate, monsterId) {
+  return { [monsterId]: true, ...oldSavestate }; // ???
+}
+
 export function computeNodeStates(savestate) {
   return { 1: 'completed', 2: 'available', 3: 'locked', 4: 'locked', 5: 'locked', 6: 'locked' }
 }
