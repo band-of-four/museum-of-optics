@@ -34,11 +34,11 @@ export default class QuestMap extends React.Component {
   renderMapNode = (nodeStates) => ({ x, y, id }) => {
     switch (nodeStates[id]) {
       case 'completed':
-        return <circle cx={x} cy={y} r="6" className="map-node--completed" />;
+        return <circle key={id} cx={x} cy={y} r="6" className="map-node--completed" />;
       case 'locked':
-        return <circle cx={x} cy={y} r="6" className="map-node--locked" />
+        return <circle key={id} cx={x} cy={y} r="6" className="map-node--locked" />
       case 'available':
-        return <circle cx={x} cy={y} r="6" className="map-node--available"
+        return <circle key={id} cx={x} cy={y} r="6" className="map-node--available"
           onClick={this.props.go} data-to="monster-view" data-monster-id={id} />;
     }
   }

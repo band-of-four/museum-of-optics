@@ -16,6 +16,7 @@ export default class MonsterView extends React.Component {
       <View id={this.props.id} activePanel={this.state.view}>
         {this.renderIntroPanel(monster)}
         {this.renderActionPanel(monster)}
+        {this.renderResultPanel(monster)}
       </View>
     );
   }
@@ -46,8 +47,38 @@ export default class MonsterView extends React.Component {
         </PanelHeader>
         <Div style={{ textAlign: "center" }}>
           <div>
-            <Button size="l" level="1" onClick={() => this.setState({ view: 'action' })}>Применить</Button>
+            <Button size="l" level="1" onClick={this.requestQrCode}>Применить</Button>
           </div>
+        </Div>
+      </Panel>
+    );
+  }
+
+  requestQrCode = () => {
+    this.props.send('VKWebAppOpenQR', {}, {
+      'VKWebAppOpenQRResult': ({ qr_data }) => {
+        this.setState({ view: 'monster-view-result', code: qr_data });
+      },
+      'VKWebAppOpenQRFailed': (_) => {
+        this.setState({ view: 'monster-view-result', qrFailed: true })
+      }
+    });
+  }
+
+  renderResultPanel({ name }) {
+    return (
+      <Panel id="monster-view-result" theme="white">
+        <PanelHeader>{name}</PanelHeader>
+        <Div style={{ textAlign: "center" }}>
+          {this.state.qrFailed && <>
+            <p>Ошибка</p>
+            <Button size="l" level="1" onClick={() => this.setState({ view: 'monster-view-action' })}>Вернуться</Button>
+          </>}
+          {!this.state.qrFailed && <>
+            <p>Поздравляем, ты победил!</p>
+            <p>Код: {this.state.code}</p>
+            <Button size="l" level="1" onClick={this.props.go} data-to="quest-map">Далее</Button>
+          </>}
         </Div>
       </Panel>
     );

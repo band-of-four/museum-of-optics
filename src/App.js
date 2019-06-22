@@ -14,7 +14,8 @@ export default class App extends React.Component {
     this.state = {
       view: 'home',
       perViewProps: {},
-      user: null
+      user: null,
+      connectCallbacks: {}
     };
   }
 
@@ -24,7 +25,8 @@ export default class App extends React.Component {
         <Home id="home" user={this.state.user} go={this.go} />
         <ColorTilesGame id="color-tiles-game" go={this.go} />
         <QuestMap id="quest-map" go={this.go} />
-        <MonsterView id="monster-view" go={this.go} {...this.state.perViewProps['monster-view']} />
+        <MonsterView id="monster-view" go={this.go} send={this.sendConnectRequest}
+          {...this.state.perViewProps['monster-view']} />
       </Root>
     );
   }
@@ -34,6 +36,21 @@ export default class App extends React.Component {
     this.setState({ view: to, perViewProps: { [to]: props, ...this.state.perViewProps } });
   };
 
+  /* callbacks is an object of { event type (string): callback function } */
+  sendConnectRequest = (method, args, callbacks) => {
+    this.setState({ connectCallbacks: callbacks });
+    connect.send(method, args);
+  }
+
+  tryInvokeEventCallback = (type, data) => {
+    const callback = this.state.connectCallbacks[type];
+    if (!callback) return false;
+
+    callback(data);
+    this.setState({ connectCallbacks: { ...this.state.connectCallbacks, [type]: undefined } });
+    return true;
+  }
+
   componentDidMount() {
     connect.subscribe((e) => {
       switch (e.detail.type) {
@@ -41,7 +58,15 @@ export default class App extends React.Component {
           this.setState({ user: e.detail.data });
           break;
         default:
-          console.log(e.detail.type);
+          if (!this.tryInvokeEventCallback(e.detail.type, e.detail.data)) {
+            if (e.detail.handler === 'VKWebAppOpenQR' &&
+              this.tryInvokeEventCallback('VKWebAppOpenQRResult', { qr_data: 'test' })) {
+              /* FIXME: remove later, this is a development hack to mock the API method */
+            }
+            else {
+              console.log(`Unhandled connect event: ${e.detail.type}`);
+            }
+          }
       }
     });
     connect.send('VKWebAppGetUserInfo', {});
