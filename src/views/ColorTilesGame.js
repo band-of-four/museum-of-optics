@@ -21,7 +21,7 @@ export default class ColorTilesGame extends React.Component {
         ['b', 'r', 'g', 'y', 'r', 'y'],
         ['r', 'g', 'b', 'r', 'b', 'g']
       ],
-      expectedTileColor: '',
+      expectedPosition: [0, 0],
       initTask: true,
       currentPosition: [0, 0]
     };
@@ -35,12 +35,43 @@ export default class ColorTilesGame extends React.Component {
       this.setState({ directions: 'Поздравляем, ты прошел игру)' });
       return;
     }
+    this.setState({ currentPosition: this.state.expectedPosition });
+    this.nextTile();
 
-    this.setState({ directions: color, answers: this.state.answers + 1 });
+    this.setState({ answers: this.state.answers + 1 });
   }
 
-  nextTile = (x, y) => () => {
-
+  nextTile = () => () => {
+    var direction = Math.floor(Math.random() * 4); // random int [0; 3]
+    // 0 - left, 1 - up, 2 - right, 3 - down
+    while ((direction == 0 && this.state.currentPosition[0] == 0) ||
+      (direction == 1 && this.state.currentPosition[1] == 0) ||
+      (direction == 2 && this.state.currentPosition[0] == 5) ||
+      (direction == 3 && this.state.currentPosition[1] == 5))
+      direction = Math.floor(Math.random() * 4);
+    var stringDirection = '', offset = 0, currentPosition = this.state.currentPosition;
+    switch (direction) {
+      case 0:
+        stringDirection = 'left';
+        offset = 1 + Math.floor(Math.random * (currentPosition[1]));
+        this.setState({ expectedPosition: [currentPosition[0], currentPosition[1] - offset] });
+        break;
+      case 1:
+        stringDirection = 'up';
+        offset = 1 + Math.floor(Math.random * (currentPosition[0]));
+        this.setState({ expectedPosition: [currentPosition[0] - offset, currentPosition[1]] });
+        break;
+      case 2:
+        stringDirection = 'right';
+        offset = 1 + Math.floor(Math.random * (5 - currentPosition[1]));
+        this.setState({ expectedPosition: [currentPosition[0], currentPosition[1] + offset] });
+        break;
+      case 3:
+        stringDirection = 'down';
+        offset = 1 + Math.floor(Math.random * (5 - currentPosition[0]));
+        this.setState({ expectedPosition: [currentPosition[0] + offset, currentPosition[1]] });
+    }
+    this.setState({ directions: `${stringDirection}, ${offset}` });
   }
 
   initTaskTileSelected = (color) => () => {
