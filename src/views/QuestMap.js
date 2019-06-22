@@ -39,7 +39,7 @@ export default class QuestMap extends React.Component {
         return <circle key={id} cx={x} cy={y} r="6" className="map-node--locked" />
       case 'available':
         return <circle key={id} cx={x} cy={y} r="6" className="map-node--available"
-          onClick={this.props.go} data-to="monster-view" data-monster-id={id} />;
+          onClick={this.props.go} data-to="monster" data-monster-id={id} />;
     }
   }
 }
