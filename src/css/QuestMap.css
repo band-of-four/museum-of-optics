@@ -1,11 +1,19 @@
-.map-point {
-  fill: none;
+.map-node--available {
+  fill: white;
+  stroke: #6991bd;
 }
 
-.map-point:hover, .map-point:focus {
+.map-node--available:hover,
+.map-node--available:focus {
   fill: #dbe3eb;
 }
 
-.map-point--active {
-  fill: #99b0c6;
+.map-node--completed {
+  fill: #9eb7d1;
+  stroke: #587fa6;
+}
+
+.map-node--locked {
+  stroke: #aeb8c2;
+  fill: #ecf0f3;
 }

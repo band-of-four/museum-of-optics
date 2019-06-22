@@ -11,7 +11,7 @@ export default class MonsterView extends React.Component {
     return (
       <Panel id={this.props.id} theme="white">
         <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="home" />}>
-          Beast 14
+          Beast {this.props.monsterId}
         </PanelHeader>
         <Div style={{ textAlign: "center" }}>
           <img alt="" src="" />

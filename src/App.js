@@ -13,6 +13,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       activePanel: 'home',
+      activePanelProps: {},
       user: null
     };
   }
@@ -23,13 +24,14 @@ export default class App extends React.Component {
         <Home id="home" user={this.state.user} go={this.go} />
         <ColorTilesGame id="color-tiles-game" go={this.go} />
         <QuestMap id="quest-map" go={this.go} />
-        <MonsterView id="monster-view" go={this.go} />
+        <MonsterView id="monster-view" go={this.go} {...this.state.activePanelProps} />
       </View>
     );
   }
 
   go = (e) => {
-    this.setState({ activePanel: e.currentTarget.dataset.to })
+    const { to, ...props } = e.currentTarget.dataset;
+    this.setState({ activePanel: to, activePanelProps: props });
   };
 
   componentDidMount() {

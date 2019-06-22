@@ -2,6 +2,7 @@ import React from 'react';
 import { Panel, PanelHeader, Div } from '@vkontakte/vkui';
 import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack';
 import '../css/QuestMap.css';
+import { nodeLocations, computeNodeStates } from '../lib/map';
 
 export default class QuestMap extends React.Component {
   constructor(props) {
@@ -22,17 +23,23 @@ export default class QuestMap extends React.Component {
   }
 
   renderSvgMap() {
+    const nodeStates = computeNodeStates(null /* savestate */);
     return (
       <svg xmlns="http://www.w3.org/2000/svg" width="240" height="510" viewBox="0 0 63.5 134.9">
-        <g stroke="#5b6e85" stroke-linejoin="bevel">
-          <path onClick={this.props.go} data-to="monster-view" className="map-point map-point--active" d="m 97.802765,280.49843 a 5.7568679,5.7568679 0 0 1 -5.756852,5.75687 5.7568679,5.7568679 0 0 1 -5.756868,-5.75687 5.7568679,5.7568679 0 0 1 5.756868,-5.75687 5.7568679,5.7568679 0 0 1 5.756852,5.75687 z" transform="translate(-62.5 -151.8)" />
-          <path className="map-point" d="m 125.11302,245.42807 a 5.7568679,5.7568679 0 0 1 -5.75687,5.75687 5.7568679,5.7568679 0 0 1 -5.75687,-5.75687 5.7568679,5.7568679 0 0 1 5.75687,-5.75687 5.7568679,5.7568679 0 0 1 5.75687,5.75687 z" transform="translate(-62.5 -151.8)" />
-          <path className="map-point" d="m 74.549982,227.91759 a 5.7568679,5.7568679 0 0 1 -5.756868,5.75687 5.7568679,5.7568679 0 0 1 -5.756868,-5.75687 5.7568679,5.7568679 0 0 1 5.756868,-5.75687 5.7568679,5.7568679 0 0 1 5.756868,5.75687 z" transform="translate(-62.5 -151.8)" />
-          <path className="map-point" d="m 80.927102,187.4501 a 5.7568679,5.7568679 0 0 1 -5.756868,5.75687 5.7568679,5.7568679 0 0 1 -5.756868,-5.75687 5.7568679,5.7568679 0 0 1 5.756868,-5.75687 5.7568679,5.7568679 0 0 1 5.756868,5.75687 z" transform="translate(-62.5 -151.8)" />
-          <path className="map-point" d="m 119.94733,204.56073 a 5.7568679,5.7568679 0 0 1 -5.75687,5.75687 5.7568679,5.7568679 0 0 1 -5.75687,-5.75687 5.7568679,5.7568679 0 0 1 5.75687,-5.75687 5.7568679,5.7568679 0 0 1 5.75687,5.75687 z" transform="translate(-62.5 -151.8)" />
-          <path className="map-point" d="m 103.43626,159.10691 a 5.7568679,5.7568679 0 0 1 -5.756871,5.75686 5.7568679,5.7568679 0 0 1 -5.75686,-5.75686 5.7568679,5.7568679 0 0 1 5.75686,-5.75687 5.7568679,5.7568679 0 0 1 5.756871,5.75687 z" transform="translate(-62.5 -151.8)" />
-        </g>
+        {nodeLocations.map(this.renderMapNode(nodeStates))}
       </svg>
     );
+  }
+
+  renderMapNode = (nodeStates) => ({ x, y, id }) => {
+    switch (nodeStates[id]) {
+      case 'completed':
+        return <circle cx={x} cy={y} r="6" className="map-node--completed" />;
+      case 'locked':
+        return <circle cx={x} cy={y} r="6" className="map-node--locked" />
+      case 'available':
+        return <circle cx={x} cy={y} r="6" className="map-node--available"
+          onClick={this.props.go} data-to="monster-view" data-monster-id={id} />;
+    }
   }
 }
