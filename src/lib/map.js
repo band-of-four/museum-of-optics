@@ -9,15 +9,13 @@ export const nodeLocations = [
 
 export const pathGraph = { 1: [2], 2: [3, 4], 3: [5], 4: [5] , 5: [6], 6: [] };
 
-export const initialSavestate = { 1: 'available', 2: 'locked', 3: 'locked', 4: 'locked', 5: 'locked', 6: 'locked' };
+export const initialSavestate = { 1: 'completed', 2: 'available', 3: 'locked', 4: 'locked', 5: 'locked', 6: 'locked' };
 
 export function updateSavestateOnCompletion(oldSavestate, monsterId) {
 	oldSavestate[monsterId] = 'completed';	
 	pathGraph[monsterId].forEach(function(item, i, child) {
 			oldSavestate[child[i]] = 'available';
 	})
-	console.dir(oldSavestate);
-	console.log(monsterId);
 	return { [monsterId]: true, ...oldSavestate }; 
 }
 

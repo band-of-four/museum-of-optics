@@ -2,7 +2,7 @@ import React from 'react';
 import seIfmoRu from '../img/monsters/se_ifmo_ru.png';
 
 const monsters = {
-  1: {
+  3: {
       name: 'Лекция Калинина',
       sprite: seIfmoRu,
       spriteDefeated: seIfmoRu,
