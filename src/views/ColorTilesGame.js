@@ -28,7 +28,14 @@ export default class ColorTilesGame extends React.Component {
   }
 
   tileSelected = (color) => () => {
+    console.log(this.state.field[this.state.expectedPosition[0]]              
+      [this.state.expectedPosition[1]]);
     if (this.state.initTask) {
+      return;
+    }
+    if (color != this.state.field[this.state.expectedPosition[0]]
+      [this.state.expectedPosition[1]]) {
+      this.setState({ initTask: true, answers: 0, directions: 'Неверно, попробуем ещё раз' });
       return;
     }
     if (this.state.answers === 3) {
