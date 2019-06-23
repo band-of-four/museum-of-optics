@@ -36,6 +36,33 @@ export class Vk {
     connect.subscribe(this.handleResponse);
   }
 
+  storage = {
+    set: (key, value) => new Promise((resolve) => {
+      if (devMode)
+        resolve(localStorage.setItem(key, value));
+      else
+        this.send('VKWebAppCallAPIMethod', {
+          method: 'storage.set', params: {
+            key, value, user_id: this.user.id, access_token: this.accessToken, v: '5.95'
+          }
+        }, {
+          VKWebAppCallAPIMethodResult: resolve
+        });
+    }),
+    get: (key) => new Promise((resolve) => {
+      if (devMode)
+        resolve(localStorage.getItem(key))
+      else
+        this.send('VKWebAppCallAPIMethod', {
+          method: 'storage.get', params: {
+            key, user_id: this.user.id, access_token: this.accessToken, v: '5.95'
+          }
+        }, {
+          VKWebAppCallAPIMethodResult: resolve
+        });
+    })
+  }
+
   /* callbacks is an object of { event type (string): callback function } */
   send = (method, args, callbacks) => {
     this.callbacks = callbacks;

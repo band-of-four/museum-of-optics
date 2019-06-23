@@ -1,7 +1,8 @@
 import React from 'react';
 import { Root } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
-import { Vk, setupVkIntegration } from './lib/vk';
+import { setupVkIntegration } from './lib/vk';
+import { initialSavestate } from './lib/map';
 
 import Home from './views/Home';
 import ColorTilesGame from './views/ColorTilesGame';
@@ -11,7 +12,7 @@ import Monster from './views/Monster';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { view: 'home', perViewProps: {}, vk: null };
+    this.state = { view: 'home', perViewProps: {}, vk: null, savestate: null };
   }
 
   render() {
@@ -19,7 +20,7 @@ export default class App extends React.Component {
       <Root activeView={this.state.view}>
         <Home id="home" user={this.state.vk && this.state.vk.user} go={this.go} />
         <ColorTilesGame id="color-tiles-game" go={this.go} />
-        <QuestMap id="quest-map" go={this.go} />
+        <QuestMap id="quest-map" go={this.go} savestate={this.state.savestate} />
         <Monster id="monster" go={this.go} send={this.state.vk && this.state.vk.send}
           {...this.state.perViewProps.monster} />
       </Root>
@@ -32,6 +33,10 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
-    setupVkIntegration((vk) => this.setState({ vk }));
+    setupVkIntegration(async (vk) => {
+      const storedState = await vk.storage.get('savestate');
+      const savestate = (storedState && storedState != "") ? JSON.parse(storedState) : initialSavestate;
+      this.setState({ vk, savestate })
+    });
   }
 }
