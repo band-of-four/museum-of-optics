@@ -16,6 +16,9 @@ export function setupVkIntegration(integrationCallback) {
         user = data;
         connect.send("VKWebAppGetAuthToken", { app_id: 7017221 });
         break;
+      case 'VKWebAppAccessTokenFailed':
+        connect.send("VKWebAppGetAuthToken", { app_id: 7017221 });
+        break;
       case 'VKWebAppAccessTokenReceived':
         accessToken = data.access_token;
         connect.unsubscribe(initCallback);
