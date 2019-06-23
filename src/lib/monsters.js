@@ -10,6 +10,8 @@ import Troll3D from '../img/monsters/troll_3d.png';
 import Troll3Defeated from '../img/monsters/troll_3d_defeated.png';
 import VioletDemon from '../img/monsters/violet_demon.png';
 import VioletDemonDefeated from '../img/monsters/violet_demon_defeated.png';
+import Nightmare from '../img/monsters/nightmare.png';
+import NightmareDefeated from '../img/monsters/nightmare_defeated.png';
 
 const monsters = {
   2: {
@@ -77,6 +79,18 @@ const monsters = {
     sprite: VioletDemon,
     spriteDefeated: VioletDemonDefeated,
     description: 'Злобный рык раздаётся за твоей спиной, Ты оборачиваешься, но никого не видишь. Кажется, твой противник не видим. Может быть он проявится в другом спектре?',
+    correctQr: 'test',
+    hint: (
+      <p>
+        --
+      </p>
+    )
+  },
+  7: {
+    name: 'Ночной Кошмар',
+    sprite: Nightmare,
+    spriteDefeated: NightmareDefeated,
+    description: 'Неожиданно тьма накрыла всё вокруг. Ты не видишь ни дороги, ни своих собственных рук. Лишь злобно светящиеся синие глаза виднеются вдали. Что же делать?',
     correctQr: 'test',
     hint: (
       <p>
