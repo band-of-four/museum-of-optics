@@ -12,6 +12,8 @@ import VioletDemon from '../img/monsters/violet_demon.png';
 import VioletDemonDefeated from '../img/monsters/violet_demon_defeated.png';
 import Nightmare from '../img/monsters/nightmare.png';
 import NightmareDefeated from '../img/monsters/nightmare_defeated.png';
+import Shadow from '../img/monsters/shadow.png';
+import ShadowDefeated from '../img/monsters/shadow_defeated.png';
 
 const monsters = {
   2: {
@@ -86,11 +88,23 @@ const monsters = {
       </p>
     )
   },
-  7: {
+  8: {
     name: 'Ночной Кошмар',
     sprite: Nightmare,
     spriteDefeated: NightmareDefeated,
     description: 'Неожиданно тьма накрыла всё вокруг. Ты не видишь ни дороги, ни своих собственных рук. Лишь злобно светящиеся синие глаза виднеются вдали. Что же делать?',
+    correctQr: 'test',
+    hint: (
+      <p>
+        --
+      </p>
+    )
+  },
+  9: {
+    name: 'Тень',
+    sprite: Shadow,
+    spriteDefeated: ShadowDefeated,
+    description: 'За тобой увязалась странная тень. Острая коса в её руках не сулит ничего хорошего. Все попытки пнуть или проткнуть тень оборачиваются провалом, ведь только тень может одолеть другую тень...',
     correctQr: 'test',
     hint: (
       <p>
