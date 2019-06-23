@@ -8,6 +8,8 @@ import Medusa from '../img/monsters/medusa.png';
 import MedusaDefeated from '../img/monsters/medusa_defeated.png';
 import Troll3D from '../img/monsters/troll_3d.png';
 import Troll3Defeated from '../img/monsters/troll_3d_defeated.png';
+import VioletDemon from '../img/monsters/violet_demon.png';
+import VioletDemonDefeated from '../img/monsters/violet_demon_defeated.png';
 
 const monsters = {
   2: {
@@ -63,6 +65,18 @@ const monsters = {
     sprite: Troll3D,
     spriteDefeated: Troll3Defeated,
     description: 'Грозный вид существа перед тобой не сулит ничего хорошего. А ещё хуже то, что на нем лежит какая-то магия - облик монстра расплывается и поразить цель становится практически невозможно! Нужно найти приспособление, способное снова собрать контуры существа воедино.',
+    correctQr: 'test',
+    hint: (
+      <p>
+        --
+      </p>
+    )
+  },
+  7: {
+    name: 'Фиолетовый Демон',
+    sprite: VioletDemon,
+    spriteDefeated: VioletDemonDefeated,
+    description: 'Злобный рык раздаётся за твоей спиной, Ты оборачиваешься, но никого не видишь. Кажется, твой противник не видим. Может быть он проявится в другом спектре?',
     correctQr: 'test',
     hint: (
       <p>
