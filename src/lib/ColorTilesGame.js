@@ -7,14 +7,8 @@ const field = [
   ['r', 'g', 'b', 'r', 'b', 'g']
 ];
 
-export const initialState = {
-  directions: 'Синяя или красная?',
-  x: -1,
-  y: -1,
-  routes: ['left', 'up', 'right', 'down'],
-}
-
-export function computeTurn(color, x, y, routes) {
+export function computeTurn(color, turnstate) {
+  let { x, y, routes } = turnstate;
   if (color != field[x][y]) { // player mistake
     return null;
   }
@@ -58,19 +52,11 @@ export function computeTurn(color, x, y, routes) {
       routes = routes.slice(2).concat(routes.slice(0,2));
       break;
   }
-  return {
-    directions: `${strDirection}, ${offset}`,
-    routes: routes,
-    x: x,
-    y: y
-  };
+  const directions = `${strDirection}, ${offset}`;
+  return [directions, { x, y, routes }];
 }
 
-export function computeInitTask(color) {
-  var x = 5, y;
-  if (color == 'b')
-    y = 2;
-  else
-    y = 3;
-  return computeTurn(color, x, y, ['left', 'up', 'right', 'down']);
+export function computeInitTurn(color) {
+  const x = 5, y = (color === 'b') ? 2 : 3;
+  return computeTurn(color, { x, y, routes: ['left', 'up', 'right', 'down'] });
 }

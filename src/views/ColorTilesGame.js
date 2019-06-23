@@ -6,7 +6,7 @@ import blueTile from '../img/tiles/blue.png';
 import yellowTile from '../img/tiles/yellow.png';
 import redTile from '../img/tiles/red.png';
 import greenTile from '../img/tiles/green.png';
-import { computeTurn, computeInitTask, initialState } from '../lib/ColorTilesGame.js';
+import { computeTurn, computeInitTurn } from '../lib/ColorTilesGame.js';
 
 const INIT = 0, INIT_TRANSITION = 1,
   TILE_SELECTION = 2, TILE_TRANSITION = 3,
@@ -19,9 +19,9 @@ export default class ColorTilesGame extends React.Component {
     super(props);
     this.state = {
       directions: initialDirections,
+      turnstate: null,
       answers: 0,
       view: INIT,
-      ...initialState
     };
   }
 
@@ -30,22 +30,22 @@ export default class ColorTilesGame extends React.Component {
 
   tileSelected = (color) => () => {
     if (this.state.view === INIT) {
-      const update = computeInitTask(color);
-      this.setState({ ...update, view: INIT_TRANSITION });
+      const [directions, turnstate] = computeInitTurn(color);
+      this.setState({ directions, turnstate, view: INIT_TRANSITION });
       this.setViewAfterAnimation(TILE_SELECTION);
       return;
     }
-    const { x, y, routes } = this.state;
-    const newState = computeTurn(color, x, y, routes);
-    if (newState == null) {
-      this.setState({ ...initialState, directions: null, view: RETRY_TRANSITION });
+    const newTurnstate = computeTurn(color, this.state.turnstate);
+    if (newTurnstate == null) {
+      this.setState({ directions: null, view: RETRY_TRANSITION });
       this.setViewAfterAnimation(RETRY);
     }
     else if (this.state.answers == 3) {
       this.setState({ directions: 'Поздравляем, ты прошел игру!' });
     }
     else {
-      this.setState({ ...newState, answers: this.state.answers + 1, view: TILE_TRANSITION });
+      const [directions, turnstate] = newTurnstate;
+      this.setState({ directions, turnstate, answers: this.state.answers + 1, view: TILE_TRANSITION });
       this.setViewAfterAnimation(TILE_SELECTION);
     }
   }
