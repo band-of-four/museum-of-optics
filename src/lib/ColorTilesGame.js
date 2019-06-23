@@ -27,7 +27,6 @@ export function computeTurn(color, x, y, ans, routes) {
     (direction == 3 && x == 5))
     direction = Math.floor(Math.random() * 4);
   var offset = 0, strDirection = routes[direction];
-  console.log(routes);
   switch (direction) {
     case 0:
       offset = 1 + Math.floor(Math.random() * y);
@@ -59,7 +58,6 @@ export function computeTurn(color, x, y, ans, routes) {
       routes = routes.slice(2).concat(routes.slice(0,2));
       break;
   }
-  console.log(direction, x, y);
   return {
     directions: `${strDirection}, ${offset}`,
     routes: routes,

@@ -1,32 +1,34 @@
 import React from 'react';
-import seIfmoRu from '../img/monsters/se_ifmo_ru.png';
+import HeavyKnight from '../img/monsters/heavy_knight.png';
+import HeavyKnightDefeated from '../img/monsters/heavy_knight_defeated.png';
+import ForgottenFortress from '../img/monsters/forgotten_fortress.png';
+import ForgottenFortressDefeated from '../img/monsters/forgotten_fortress_defeated.png';
 
 const monsters = {
-  3: {
-      name: 'Лекция Калинина',
-      sprite: seIfmoRu,
-      spriteDefeated: seIfmoRu,
-      description: 'Посчитайте вероятность того, что Калинин придет на лекцию?',
-      correctQr: 'test',
-      hint: (
-        <p>
-          Добрый день, я Игорь Владимирович, и сегодня мы будем заниматься теорвером.
-        </p>
-			)
-		},
   2: {
-    name: 'Утиная типизация',
-    sprite: seIfmoRu,
-    spriteDefeated: seIfmoRu,
-    description: 'И сколько в твоем интерпретаторе сегфолтов?',
+    name: 'Бронированный Рыцарь',
+    sprite: HeavyKnight,
+    spriteDefeated: HeavyKnightDefeated,
+    description: 'На твоём пути встал огромный рыцарь. Он угрожающе поднимает меч. Всё его тело надёжно защищено доспехом. Или нет? Найди способ узнать, где нет брони, чтобы атаковать.',
     correctQr: 'test',
     hint: (
       <p>
-        Добрый день, я Утинатор, и сегодня я хочу рассказать вам о том,
-        почему вы должны бросить все дела и заставить себя учить Форт.
+        --
       </p>
     )
-  }
+  },
+  3: {
+    name: 'Забытая Цитадель',
+    sprite: ForgottenFortress,
+    spriteDefeated: ForgottenFortressDefeated,
+    description: 'На твоём пути встал огромный рыцарь. Он угрожающе поднимает меч. Всё его тело надёжно защищено доспехом. Или нет? Найди способ узнать, где нет брони, чтобы атаковать.',
+    correctQr: 'test',
+    hint: (
+      <p>
+        --
+      </p>
+    )
+  },
 };
 
 export default monsters;
