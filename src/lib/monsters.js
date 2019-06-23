@@ -16,6 +16,8 @@ import Shadow from '../img/monsters/shadow.png';
 import ShadowDefeated from '../img/monsters/shadow_defeated.png';
 import Stereozavr from '../img/monsters/stereozavr.png';
 import StereozavrDefeated from '../img/monsters/stereozavr_defeated.png';
+import CylinDemon from '../img/monsters/cylindemon.png';
+import CylinDemonDefeated from '../img/monsters/cylindemon_defeated.png';
 
 const monsters = {
   2: {
@@ -119,6 +121,18 @@ const monsters = {
     sprite: Stereozavr,
     spriteDefeated: StereozavrDefeated,
     description: 'Стоило тебе заметить подозрительный силуэт неподалеку, как все пространство вокруг превратилось в неоднородную кашу... Должен быть способ прогнать наваждение и сразиться с его создателем!',
+    correctQr: 'test',
+    hint: (
+      <p>
+        --
+      </p>
+    )
+  },
+  11: {
+    name: 'Демон Цилиндра',
+    sprite: CylinDemon,
+    spriteDefeated: CylinDemonDefeated,
+    description: 'Ты повидал всякое на своем веку, но таких странных существ встречать ещё не доводилось! Впрочем, после нескольких безуспешных атак становится ясно - то, что ты видишь всего лишь иллюзия. Осталось лишь найти что-то, что поможет её развеять.',
     correctQr: 'test',
     hint: (
       <p>
