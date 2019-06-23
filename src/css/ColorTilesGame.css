@@ -28,3 +28,87 @@
   display: flex;
   justify-content: center;
 }
+
+.tile-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+.tile-container--animated {
+  /* https://easings.net/en#easeInOutSine */
+  animation: container .8s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+}
+
+.tile-container--animated .tile-button {
+  animation: tile .8s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+}
+
+.tile-container--init > div:last-child > .tile-button {
+  opacity: 0;
+}
+
+.tile-container--init.tile-container--animated > div:first-child > .tile-button {
+  animation: init-visible-row-tile .8s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+}
+
+.tile-container--init.tile-container--animated > div:last-child > .tile-button {
+  animation: init-hidden-row-tile .8s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+}
+
+.tile-container--retry-transition {
+  animation: fade-out .8s ease-in forwards;
+}
+
+.tile-container--retry-transition .tile-button {
+  animation: none;
+}
+
+.tile-container--retry {
+  display: none;
+}
+
+.tile-container--retry-init-transition {
+  animation: fade-in .4s ease-in forwards;
+  animation-delay: .4s;
+  display: none;
+}
+
+.retry--fade {
+  animation: fade-out .4s ease-in forwards;
+}
+
+@keyframes container {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes tile {
+  0% { transform: scale(1.0); border-radius: 0; }
+  50% { transform: scale(0.6); border-radius: 50%; }
+  100% { transform: scale(1.0); border-radius: 0; }
+}
+
+@keyframes init-visible-row-tile {
+  0% { transform: scale(1.0); border-radius: 0; }
+  50% { transform: scale(0.0); border-radius: 50%; }
+  100% { transform: scale(1.0); border-radius: 0; }
+}
+
+@keyframes init-hidden-row-tile {
+  0% { transform: scale(0.0); }
+  50% { transform: scale(0.0); border-radius: 50%; opacity: 1.0; }
+  100% { transform: scale(1.0); border-radius: 0; opacity: 1.0; }
+}
+
+@keyframes fade-out {
+  0% { opacity: 1; display: block; }
+  100% { opacity: 0; display: none; }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; display: block; }
+  100% { opacity: 1; display: block; }
+}

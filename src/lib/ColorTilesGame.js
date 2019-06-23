@@ -7,16 +7,16 @@ const field = [
   ['r', 'g', 'b', 'r', 'b', 'g']
 ];
 
-export function computeTurn(color, x, y, ans, routes) {
+export const initialState = {
+  directions: 'Синяя или красная?',
+  x: -1,
+  y: -1,
+  routes: ['left', 'up', 'right', 'down'],
+}
+
+export function computeTurn(color, x, y, routes) {
   if (color != field[x][y]) { // player mistake
-    return {
-      directions: 'Неверно, попробуем ещё раз. Синяя или красная?',
-      routes: ['left', 'up', 'right', 'down'], // idle routes
-      answers: 0,
-      initTask: true,
-      x: -1,
-      y: -1
-    };
+    return null;
   }
   // compute next tile
   var direction = Math.floor(Math.random() * 4); // random int [0; 3]
@@ -61,8 +61,6 @@ export function computeTurn(color, x, y, ans, routes) {
   return {
     directions: `${strDirection}, ${offset}`,
     routes: routes,
-    answers: ans + 1,
-    initTask: false,
     x: x,
     y: y
   };
@@ -74,5 +72,5 @@ export function computeInitTask(color) {
     y = 2;
   else
     y = 3;
-  return computeTurn(color, x, y, -1, ['left', 'up', 'right', 'down']);
+  return computeTurn(color, x, y, ['left', 'up', 'right', 'down']);
 }
