@@ -36,12 +36,14 @@
   padding: 30px;
 }
 
-.tile-container--animated {
+.tile-container--init-transition,
+.tile-container--turn-transition {
   /* https://easings.net/en#easeInOutSine */
   animation: container .8s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
 }
 
-.tile-container--animated .tile-button {
+.tile-container--init-transition .tile-button,
+.tile-container--turn-transition .tile-button {
   animation: tile .8s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
 }
 
@@ -49,11 +51,11 @@
   opacity: 0;
 }
 
-.tile-container--init.tile-container--animated > div:first-child > .tile-button {
+.tile-container--init-transition > div:first-child > .tile-button {
   animation: init-visible-row-tile .8s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
 }
 
-.tile-container--init.tile-container--animated > div:last-child > .tile-button {
+.tile-container--init-transition > div:last-child > .tile-button {
   animation: init-hidden-row-tile .8s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
 }
 

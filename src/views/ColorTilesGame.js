@@ -9,10 +9,11 @@ import greenTile from '../img/tiles/green.png';
 import { computeTurn, computeInitTurn } from '../lib/ColorTilesGame.js';
 
 const INIT = 0, INIT_TRANSITION = 1,
-  TILE_SELECTION = 2, TILE_TRANSITION = 3,
+  TURN = 2, TURN_TRANSITION = 3,
   RETRY_TRANSITION = 4, RETRY = 5, RETRY_INIT_TRANSITION = 6;
 
 const initialDirections = 'Синяя или красная?';
+const animationDuration = 800;
 
 export default class ColorTilesGame extends React.Component {
   constructor(props) {
@@ -26,13 +27,13 @@ export default class ColorTilesGame extends React.Component {
   }
 
   setViewAfterAnimation = (view) =>
-    setTimeout(() => this.setState({ view }), 800);
+    setTimeout(() => this.setState({ view }), animationDuration);
 
   tileSelected = (color) => () => {
     if (this.state.view === INIT) {
       const [directions, turnstate] = computeInitTurn(color);
       this.setState({ directions, turnstate, view: INIT_TRANSITION });
-      this.setViewAfterAnimation(TILE_SELECTION);
+      this.setViewAfterAnimation(TURN);
       return;
     }
     const newTurnstate = computeTurn(color, this.state.turnstate);
@@ -45,20 +46,19 @@ export default class ColorTilesGame extends React.Component {
     }
     else {
       const [directions, turnstate] = newTurnstate;
-      this.setState({ directions, turnstate, answers: this.state.answers + 1, view: TILE_TRANSITION });
-      this.setViewAfterAnimation(TILE_SELECTION);
+      this.setState({ directions, turnstate, answers: this.state.answers + 1, view: TURN_TRANSITION });
+      this.setViewAfterAnimation(TURN);
     }
   }
 
   render() {
     const { view } = this.state;
     const containerClass = view === INIT ? 'tile-container--init'
-      : view === INIT_TRANSITION ? 'tile-container--init tile-container--animated'
-        : view === TILE_SELECTION ? ''
-          : view === TILE_TRANSITION ? 'tile-container--animated'
-            : view === RETRY_TRANSITION ? 'tile-container--retry-transition'
-              : view === RETRY ? 'tile-container--retry'
-                : view === RETRY_INIT_TRANSITION ? 'tile-container--retry-init-transition' : '';
+      : view === INIT_TRANSITION ? 'tile-container--init-transition'
+        : view === TURN_TRANSITION ? 'tile-container--turn-transition'
+          : view === RETRY_TRANSITION ? 'tile-container--retry-transition'
+            : view === RETRY ? 'tile-container--retry'
+              : view === RETRY_INIT_TRANSITION ? 'tile-container--retry-init-transition' : '';
     return (
       <View id={this.props.id} activePanel="color-tiles-main">
         <Panel id="color-tiles-main" theme="white">
@@ -97,7 +97,7 @@ export default class ColorTilesGame extends React.Component {
         <p>Очень жаль, но ты ошибся. Вернись в начало и попробуй еще раз ;)</p>
         <Button size="l" level="1" onClick={() => {
           this.setState({ view: RETRY_INIT_TRANSITION });
-          setTimeout(() => this.setState({ view: INIT, directions: initialDirections }), 800);
+          setTimeout(() => this.setState({ view: INIT, directions: initialDirections }), animationDuration);
         }}>Окей</Button>
       </div>
     );
