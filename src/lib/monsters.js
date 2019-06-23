@@ -14,6 +14,8 @@ import Nightmare from '../img/monsters/nightmare.png';
 import NightmareDefeated from '../img/monsters/nightmare_defeated.png';
 import Shadow from '../img/monsters/shadow.png';
 import ShadowDefeated from '../img/monsters/shadow_defeated.png';
+import Stereozavr from '../img/monsters/stereozavr.png';
+import StereozavrDefeated from '../img/monsters/stereozavr_defeated.png';
 
 const monsters = {
   2: {
@@ -105,6 +107,18 @@ const monsters = {
     sprite: Shadow,
     spriteDefeated: ShadowDefeated,
     description: 'За тобой увязалась странная тень. Острая коса в её руках не сулит ничего хорошего. Все попытки пнуть или проткнуть тень оборачиваются провалом, ведь только тень может одолеть другую тень...',
+    correctQr: 'test',
+    hint: (
+      <p>
+        --
+      </p>
+    )
+  },
+  10: {
+    name: 'Стереозавр',
+    sprite: Stereozavr,
+    spriteDefeated: StereozavrDefeated,
+    description: 'Стоило тебе заметить подозрительный силуэт неподалеку, как все пространство вокруг превратилось в неоднородную кашу... Должен быть способ прогнать наваждение и сразиться с его создателем!',
     correctQr: 'test',
     hint: (
       <p>
