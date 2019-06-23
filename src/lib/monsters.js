@@ -6,6 +6,8 @@ import ForgottenFortressDefeated from '../img/monsters/forgotten_fortress_defeat
 import Specular from '../img/monsters/specular.png';
 import Medusa from '../img/monsters/medusa.png';
 import MedusaDefeated from '../img/monsters/medusa_defeated.png';
+import Troll3D from '../img/monsters/troll_3d.png';
+import Troll3Defeated from '../img/monsters/troll_3d_defeated.png';
 
 const monsters = {
   2: {
@@ -47,8 +49,20 @@ const monsters = {
   5: {
     name: 'Медуза',
     sprite: Medusa,
-    spriteDefeated: Medusa,
+    spriteDefeated: MedusaDefeated,
     description: 'Ты слышишь шипение, доносящееся из-за поворота. Инстинкты подсказывают, что лучше не смотреть ей в глаза. Что-то должно помочь обойти её и не превратиться в камень.',
+    correctQr: 'test',
+    hint: (
+      <p>
+        --
+      </p>
+    )
+  },
+  6: {
+    name: 'Трехмерный Тролль',
+    sprite: Troll3D,
+    spriteDefeated: Troll3Defeated,
+    description: 'Грозный вид существа перед тобой не сулит ничего хорошего. А ещё хуже то, что на нем лежит какая-то магия - облик монстра расплывается и поразить цель становится практически невозможно! Нужно найти приспособление, способное снова собрать контуры существа воедино.',
     correctQr: 'test',
     hint: (
       <p>
