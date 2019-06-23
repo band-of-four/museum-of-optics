@@ -10,10 +10,12 @@ import { computeTurn, computeInitTurn } from '../lib/ColorTilesGame.js';
 
 const INIT = 0, INIT_TRANSITION = 1,
   TURN = 2, TURN_TRANSITION = 3,
-  RETRY_TRANSITION = 4, RETRY = 5, RETRY_INIT_TRANSITION = 6;
+  RETRY_TRANSITION = 4, RETRY = 5, RETRY_INIT_TRANSITION = 6,
+  WIN_TRANSITION = 7, WIN = 8;
 
 const initialDirections = 'Синяя или красная?';
 const animationDuration = 800;
+const turnsToWin = 3;
 
 export default class ColorTilesGame extends React.Component {
   constructor(props) {
@@ -41,8 +43,9 @@ export default class ColorTilesGame extends React.Component {
       this.setState({ directions: null, view: RETRY_TRANSITION });
       this.setViewAfterAnimation(RETRY);
     }
-    else if (this.state.answers == 3) {
-      this.setState({ directions: 'Поздравляем, ты прошел игру!' });
+    else if (this.state.answers === turnsToWin) {
+      this.setState({ directions: null, view: WIN_TRANSITION });
+      this.setViewAfterAnimation(WIN);
     }
     else {
       const [directions, turnstate] = newTurnstate;
@@ -56,9 +59,10 @@ export default class ColorTilesGame extends React.Component {
     const containerClass = view === INIT ? 'tile-container--init'
       : view === INIT_TRANSITION ? 'tile-container--init-transition'
         : view === TURN_TRANSITION ? 'tile-container--turn-transition'
-          : view === RETRY_TRANSITION ? 'tile-container--retry-transition'
-            : view === RETRY ? 'tile-container--retry'
-              : view === RETRY_INIT_TRANSITION ? 'tile-container--retry-init-transition' : '';
+          : (view === RETRY_TRANSITION) ? 'tile-container--fade-out-transition'
+            : (view === RETRY || view === WIN) ? 'tile-container--hidden'
+              : view === RETRY_INIT_TRANSITION ? 'tile-container--retry-init-transition'
+                : view === WIN_TRANSITION ? 'tile-container--win-transition' : '';
     return (
       <View id={this.props.id} activePanel="color-tiles-main">
         <Panel id="color-tiles-main" theme="white">
@@ -83,8 +87,9 @@ export default class ColorTilesGame extends React.Component {
                 </div>
               </div>
               {(view === RETRY || view === RETRY_INIT_TRANSITION) && this.renderRetryMessage()}
+              {view === WIN && this.renderWinMessage()}
             </div>
-            {(view !== RETRY_TRANSITION && view !== RETRY && view !== RETRY_INIT_TRANSITION) && this.renderHelpMessage()}
+            {(view === INIT || view === INIT_TRANSITION || view === TURN || view === TURN_TRANSITION) && this.renderHelpMessage()}
           </Div>
         </Panel>
       </View>
@@ -92,13 +97,25 @@ export default class ColorTilesGame extends React.Component {
   }
 
   renderRetryMessage() {
+    const animationClass = this.state.view === RETRY_INIT_TRANSITION ? 'message--fade-out' : 'message--fade-in';
     return (
-      <div className={this.state.view === RETRY_INIT_TRANSITION ? 'retry--fade' : ''} style={{ textAlign: 'center' }}>
+      <div className={`message ${animationClass}`}>
         <p>Очень жаль, но ты ошибся. Вернись в начало и попробуй еще раз ;)</p>
-        <Button size="l" level="1" onClick={() => {
+        <Button size="l" level="1" stretched={true} onClick={() => {
           this.setState({ view: RETRY_INIT_TRANSITION });
           setTimeout(() => this.setState({ view: INIT, directions: initialDirections }), animationDuration);
         }}>Окей</Button>
+      </div>
+    );
+  }
+
+  renderWinMessage() {
+    return (
+      <div className="message message--fade-in">
+        <p>Поздравляем, ты прошел обряд инициации!</p>
+        <Button size="l" level="1" stretched={true} onClick={this.props.go} data-to="quest-map">
+          Вперед, к приключениям!
+        </Button>
       </div>
     );
   }
