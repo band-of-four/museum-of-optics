@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Panel, PanelHeader, Div, Spinner } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader, Div } from '@vkontakte/vkui';
 import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack';
 import '../css/QuestMap.css';
 import { nodeLocations } from '../lib/savestate';
@@ -12,18 +12,14 @@ export default function QuestMap({ id, go, savestate }) {
           Карта
         </PanelHeader>
         <Div style={{ textAlign: "center" }}>
-          {savestate ? renderSvgMap(savestate, go) : <Spinner size="large" />}
+          <svg xmlns="http://www.w3.org/2000/svg" width="240" height="510" viewBox="0 0 63.5 134.9">
+            {nodeLocations.map(renderMapNode(savestate, go))}
+          </svg>
         </Div>
       </Panel>
     </View>
   );
 }
-
-const renderSvgMap = (savestate, go) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="240" height="510" viewBox="0 0 63.5 134.9">
-    {nodeLocations.map(renderMapNode(savestate, go))}
-  </svg>
-);
 
 const renderMapNode = (nodeStates, go) => ({ x, y, id }) => {
   switch (nodeStates[id]) {

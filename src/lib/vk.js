@@ -61,7 +61,7 @@ export class Vk {
             key, user_id: this.user.id, access_token: this.accessToken, v: '5.95'
           }
         }, {
-          VKWebAppCallAPIMethodResult: resolve
+          VKWebAppCallAPIMethodResult: ({ response }) => resolve(response)
         });
     })
   }

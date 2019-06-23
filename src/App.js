@@ -1,5 +1,5 @@
 import React from 'react';
-import { Root } from '@vkontakte/vkui';
+import { Root, Div, Spinner } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import { setupVkIntegration } from './lib/vk';
 import { initialSavestate } from './lib/savestate';
@@ -15,7 +15,22 @@ export default class App extends React.Component {
     this.state = { view: 'home', perViewProps: {}, vk: null, savestate: null };
   }
 
+  componentDidMount() {
+    setupVkIntegration(async (vk) => {
+      const storedState = await vk.storage.get('savestate');
+      const savestate = (storedState && storedState != "") ? JSON.parse(storedState) : initialSavestate;
+      this.setState({ vk, savestate })
+    });
+  }
+
   render() {
+    if (!this.state.savestate) {
+      return (
+        <Div style={{ height: '100%' }}>
+          <Spinner size="large" />
+        </Div>
+      );
+    }
     return (
       <Root activeView={this.state.view}>
         <Home id="home" user={this.state.vk && this.state.vk.user} go={this.go} />
@@ -36,13 +51,5 @@ export default class App extends React.Component {
   updateSavestate = async (newSavestate) => {
     await this.state.vk.storage.set('savestate', JSON.stringify(newSavestate));
     this.setState({ savestate: newSavestate });
-  }
-
-  componentDidMount() {
-    setupVkIntegration(async (vk) => {
-      const storedState = await vk.storage.get('savestate');
-      const savestate = (storedState && storedState != "") ? JSON.parse(storedState) : initialSavestate;
-      this.setState({ vk, savestate })
-    });
   }
 }
