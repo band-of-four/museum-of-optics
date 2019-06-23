@@ -4,6 +4,8 @@ import HeavyKnightDefeated from '../img/monsters/heavy_knight_defeated.png';
 import ForgottenFortress from '../img/monsters/forgotten_fortress.png';
 import ForgottenFortressDefeated from '../img/monsters/forgotten_fortress_defeated.png';
 import Specular from '../img/monsters/specular.png';
+import Medusa from '../img/monsters/medusa.png';
+import MedusaDefeated from '../img/monsters/medusa_defeated.png';
 
 const monsters = {
   2: {
@@ -35,6 +37,18 @@ const monsters = {
     sprite: Specular,
     spriteDefeated: Specular,
     description: 'Что происходит? Лево и право поменялись местами. Похоже это проделки существа, что стоит пред тобой. Как вернуть всё в норму и победить его?',
+    correctQr: 'test',
+    hint: (
+      <p>
+        --
+      </p>
+    )
+  },
+  5: {
+    name: 'Медуза',
+    sprite: Medusa,
+    spriteDefeated: Medusa,
+    description: 'Ты слышишь шипение, доносящееся из-за поворота. Инстинкты подсказывают, что лучше не смотреть ей в глаза. Что-то должно помочь обойти её и не превратиться в камень.',
     correctQr: 'test',
     hint: (
       <p>
