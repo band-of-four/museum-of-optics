@@ -29,8 +29,6 @@ export default class ColorTilesGame extends React.Component {
   }
 
   tileSelected = (color) => () => {
-    console.log(this.state.field[this.state.expectedPosition[0]]              
-      [this.state.expectedPosition[1]]);
     if (this.state.initTask) {
       return;
     }
@@ -51,12 +49,13 @@ export default class ColorTilesGame extends React.Component {
 
   nextTile = (x, y) => {
     var direction = Math.floor(Math.random() * 4); // random int [0; 3]
+    var stateRoutes = this.state.routes;
     // 0 - left, 1 - up, 2 - right, 3 - down
     while (
-      (direction == 0 && y == 0) ||
-      (direction == 1 && x == 0) ||
-      (direction == 2 && y == 5) ||
-      (direction == 3 && x == 5)
+      (stateRoutes[direction] == 'left' && y == 0) ||
+      (stateRoutes[direction] == 'up' && x == 0) ||
+      (stateRoutes[direction] == 'right' && y == 5) ||
+      (stateRoutes[direction] == 'down' && x == 5)
     )
       direction = Math.floor(Math.random() * 4);
     var offset = 0, relRoutes = this.state.routes;
@@ -64,7 +63,7 @@ export default class ColorTilesGame extends React.Component {
       relRoutes = ['left', 'up', 'right', 'down'];
     switch (direction) {
       case 0:
-        relRoutes = relRoutes.slice(1).concat(relRoutes.slice(0,1));
+        relRoutes = relRoutes.slice(3).concat(relRoutes.slice(0,3));
         offset = 1 + Math.floor(Math.random() * y);
         this.setState({ expectedPosition: [x, y - offset] });
         break;
@@ -73,7 +72,7 @@ export default class ColorTilesGame extends React.Component {
         this.setState({ expectedPosition: [x - offset, y] });
         break;
       case 2:
-        relRoutes = relRoutes.slice(1).reverse().concat(relRoutes.slice(0,1));
+        relRoutes = relRoutes.slice(1).concat(relRoutes[0]);
         offset = 1 + Math.floor(Math.random() * (5 - y));
         this.setState({ expectedPosition: [x, y + offset] });
         break;
