@@ -4,7 +4,7 @@ import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/Pan
 import PanelHeaderClose from '@vkontakte/vkui/dist/components/PanelHeaderClose/PanelHeaderClose';
 import '../css/Monster.css';
 import monsters from '../lib/monsters';
-import {computeNodeStates, updateSavestateOnCompletion} from '../lib/map';
+import { updateSavestateOnCompletion } from '../lib/savestate';
 
 export default class Monster extends React.Component {
   constructor(props) {
@@ -72,8 +72,12 @@ export default class Monster extends React.Component {
 
   applyQrCode = (correctQr) => () => {
     this.props.send('VKWebAppOpenQR', {}, {
-      VKWebAppOpenQRResult: ({ qr_data }) => {
+      VKWebAppOpenQRResult: async ({ qr_data }) => {
         const matchesExpected = qr_data == correctQr;
+        if (matchesExpected) {
+          const savestate = updateSavestateOnCompletion(this.props.savestate, this.props.monsterId);
+          await this.props.updateSavestate(savestate);
+        }
         this.setState({ view: 'monster-result', completed: matchesExpected });
       },
       VKWebAppOpenQRFailed: (_) => {
@@ -83,17 +87,15 @@ export default class Monster extends React.Component {
   }
 
   renderResultPanel({ name, spriteDefeated }) {
-		const completed = <>
+    const completed = <>
       <img className="monster-sprite" alt={name} src={spriteDefeated} />
       <p>Поздравляем, ты победил!</p>
-      <Button size="l" level="1" onClick= {this.props.go} data-to="quest-map">Далее</Button>
+      <Button size="l" level="1" onClick={this.props.go} data-to="quest-map">Далее</Button>
     </>;
     const failed = <>
       <p>Очень жаль, но код неправильный :/</p>
       <Button size="l" level="1" onClick={this.setView('monster-action')}>Вернуться</Button>
     </>;
-		const nodeStates = computeNodeStates(null /* savestate */);
-    if (this.state.completed) { updateSavestateOnCompletion(nodeStates, this.props.monsterId)}; //уверена, что это делается немного не так
     return (
       <Panel id="monster-result" theme="white">
         <PanelHeader>{name}</PanelHeader>

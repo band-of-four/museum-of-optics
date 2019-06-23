@@ -2,7 +2,7 @@ import React from 'react';
 import { Root } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import { setupVkIntegration } from './lib/vk';
-import { initialSavestate } from './lib/map';
+import { initialSavestate } from './lib/savestate';
 
 import Home from './views/Home';
 import ColorTilesGame from './views/ColorTilesGame';
@@ -22,6 +22,7 @@ export default class App extends React.Component {
         <ColorTilesGame id="color-tiles-game" go={this.go} />
         <QuestMap id="quest-map" go={this.go} savestate={this.state.savestate} />
         <Monster id="monster" go={this.go} send={this.state.vk && this.state.vk.send}
+          savestate={this.state.savestate} updateSavestate={this.updateSavestate}
           {...this.state.perViewProps.monster} />
       </Root>
     );
@@ -31,6 +32,11 @@ export default class App extends React.Component {
     const { to, ...props } = e.currentTarget.dataset;
     this.setState({ view: to, perViewProps: { ...this.state.perViewProps, [to]: props } });
   };
+
+  updateSavestate = async (newSavestate) => {
+    await this.state.vk.storage.set('savestate', JSON.stringify(newSavestate));
+    this.setState({ savestate: newSavestate });
+  }
 
   componentDidMount() {
     setupVkIntegration(async (vk) => {
