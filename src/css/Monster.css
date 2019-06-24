@@ -1,9 +1,28 @@
-.button-row > button:not(:last-child) {
-  margin-right: 8px;
+.monster-main, .monster-action-tip {
+  margin: 24px 0 0;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.monster-main {
+  flex-grow: 1;
+}
+
+.monster-action-qr {
+  max-width: 200px;
+  flex-grow: 1;
+}
+
+.monster-buttons {
+  margin-bottom: 24px;
+}
+
+.monster-buttons > button:not(:first-child) {
+  margin-left: 8px;
 }
 
 .monster-sprite {
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 24px;
   max-width: 100%;
 }
