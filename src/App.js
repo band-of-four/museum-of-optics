@@ -8,6 +8,7 @@ import Home from './views/Home';
 import ColorTilesGame from './views/ColorTilesGame';
 import QuestMap from './views/QuestMap';
 import Monster from './views/Monster';
+import Forest from './views/Forest';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -39,6 +40,7 @@ export default class App extends React.Component {
         <Monster id="monster" go={this.go} send={this.state.vk && this.state.vk.send}
           savestate={this.state.savestate} updateSavestate={this.updateSavestate}
           {...this.state.perViewProps.monster} />
+        <Forest id="forest" go={this.go} />
       </Root>
     );
   }

@@ -14,7 +14,7 @@ export default function QuestMap({ id, go, savestate }) {
         <Div style={{ textAlign: "center" }}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 264">
             {nodeLocations.map(renderMapNode(savestate, go))}
-            {renderForest(savestate)}
+            {renderForest(savestate, go)}
             {renderPaths(savestate)}
           </svg>
         </Div>
@@ -35,12 +35,15 @@ const renderMapNode = (savestate, go) => ({ x, y, id }) => {
   }
 };
 
-const renderForest = (savestate) => {
-  const pathClass = isForestUnlocked(savestate) ? 'map-node--available' : 'map-node--locked';
-  return <g className={pathClass}>
-    <circle cx="34" cy="10.5" r="10" />
-    <path strokeLinejoin="round" d="M30.5 8.8h2.1l-3.3 3.7H33v3.6h2.2v-3.6h3.5l-3.3-3.8h2.1L34 4.1z" />
-  </g>;
+const renderForest = (savestate, go) => {
+  const forestUnlocked = isForestUnlocked(savestate);
+  return (
+    <g className={forestUnlocked ? 'map-node--available' : 'map-node--locked'}
+      onClick={forestUnlocked ? go : undefined} data-to="forest">
+      <circle cx="34" cy="10.5" r="10" />
+      <path strokeLinejoin="round" d="M30.5 8.8h2.1l-3.3 3.7H33v3.6h2.2v-3.6h3.5l-3.3-3.8h2.1L34 4.1z" />
+    </g>
+  );
 };
 
 const renderPaths = (savestate) =>
