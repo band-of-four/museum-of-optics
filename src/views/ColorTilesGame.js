@@ -40,7 +40,7 @@ export default class ColorTilesGame extends React.Component {
     }
     const newTurnstate = computeTurn(color, this.state.turnstate);
     if (newTurnstate == null) {
-      this.setState({ directions: null, view: RETRY_TRANSITION });
+      this.setState({ directions: null, answers: 0, view: RETRY_TRANSITION });
       this.setViewAfterAnimation(RETRY);
     }
     else if (this.state.answers === turnsToWin) {
