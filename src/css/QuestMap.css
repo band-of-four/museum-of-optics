@@ -1,3 +1,7 @@
+.map {
+  max-width: 260px;
+}
+
 .map-node--available {
   fill: white;
   stroke: #6991bd;

@@ -12,7 +12,7 @@ export default function QuestMap({ id, go, savestate }) {
           Карта
         </PanelHeader>
         <Div style={{ textAlign: "center" }}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 264">
+          <svg className="map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 264">
             {nodeLocations.map(renderMapNode(savestate, go))}
             {renderForest(savestate, go)}
             {renderPaths(savestate)}
