@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Panel, PanelHeader, Div, Button } from '@vkontakte/vkui';
 import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack';
+import ColorRibbon from '../components/ColorRibbon';
 import '../css/ColorTilesGame.css';
 import blueTile from '../img/tiles/blue.png';
 import yellowTile from '../img/tiles/yellow.png';
@@ -23,7 +24,7 @@ export default class ColorTilesGame extends React.Component {
     this.state = {
       directions: initialDirections,
       turnstate: null,
-      answers: 0,
+      colors: [],
       view: INIT,
     };
   }
@@ -34,22 +35,22 @@ export default class ColorTilesGame extends React.Component {
   tileSelected = (color) => () => {
     if (this.state.view === INIT) {
       const [directions, turnstate] = computeInitTurn(color);
-      this.setState({ directions, turnstate, view: INIT_TRANSITION });
+      this.setState({ directions, turnstate, colors: [color], view: INIT_TRANSITION });
       this.setViewAfterAnimation(TURN);
       return;
     }
     const newTurnstate = computeTurn(color, this.state.turnstate);
     if (newTurnstate == null) {
-      this.setState({ directions: null, answers: 0, view: RETRY_TRANSITION });
+      this.setState({ directions: null, colors: [], view: RETRY_TRANSITION });
       this.setViewAfterAnimation(RETRY);
     }
-    else if (this.state.answers === turnsToWin) {
-      this.setState({ directions: null, view: WIN_TRANSITION });
+    else if (this.state.colors.length === 3) {
+      this.setState({ directions: null, colors: this.state.colors.concat(color), view: WIN_TRANSITION });
       this.setViewAfterAnimation(WIN);
     }
     else {
       const [directions, turnstate] = newTurnstate;
-      this.setState({ directions, turnstate, answers: this.state.answers + 1, view: TURN_TRANSITION });
+      this.setState({ directions, turnstate, colors: this.state.colors.concat(color), view: TURN_TRANSITION });
       this.setViewAfterAnimation(TURN);
     }
   }
@@ -69,6 +70,7 @@ export default class ColorTilesGame extends React.Component {
           <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="home" />}>
             Какой цвет твой?
           </PanelHeader>
+          <ColorRibbon colors={this.state.colors} animated={true} />
           <Div>
             <div className="tile-directions">{this.state.directions || '\u00A0'}</div>
             <div className="tile-container-wrapper">
