@@ -4,11 +4,9 @@ import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/Pan
 
 export default function Forest({ id, go }) {
   return (
-    <View id={id} activePanel="forest-main">
-      <Panel id="forest-main" theme="white">
-        <PanelHeader left={<PanelHeaderBack onClick={go} data-to="quest-map" />}>
-          Лес
-        </PanelHeader>
+    <View id={id} activePanel="forest-intro">
+      <Panel id="forest-intro" theme="white">
+        <PanelHeader>Лес</PanelHeader>
         <Div style={{ textAlign: "center" }}>
           Лес приветствует тебя
         </Div>

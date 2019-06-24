@@ -4,7 +4,7 @@ import { View, Panel, ListItem, Button, Group, Div, Avatar, PanelHeader } from '
 const Home = ({ id, go, user, resetSavestate }) => (
   <View id={id} activePanel="main">
     <Panel id="main">
-      <PanelHeader>Квест</PanelHeader>
+      <PanelHeader>Меню разработчика</PanelHeader>
       {user &&
         <Group title="Привет">
           <ListItem
@@ -14,15 +14,9 @@ const Home = ({ id, go, user, resetSavestate }) => (
           </ListItem>
         </Group>}
 
-      <Group title="Выбери свой цвет">
-        <Div style={{ textAlign: "center" }}>
-          <Button size="l" level="1" onClick={go} data-to="color-tiles-game">Поехали</Button>
-        </Div>
-      </Group>
-
       <Group title="Карта квеста">
         <Div style={{ textAlign: "center" }}>
-          <Button size="l" level="1" stretched={true} onClick={go} data-to="quest-map">Посмотреть</Button>
+          <Button size="l" level="1" stretched={true} onClick={go} data-to="quest-map">Перейти</Button>
         </Div>
       </Group>
 

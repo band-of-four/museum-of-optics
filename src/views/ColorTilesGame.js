@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Panel, PanelHeader, Div, Button } from '@vkontakte/vkui';
-import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack';
 import ColorRibbon from '../components/ColorRibbon';
 import '../css/ColorTilesGame.css';
 import blueTile from '../img/tiles/blue.png';
@@ -67,9 +66,7 @@ export default class ColorTilesGame extends React.Component {
     return (
       <View id={this.props.id} activePanel="color-tiles-main">
         <Panel id="color-tiles-main" theme="white">
-          <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="home" />}>
-            Какой цвет твой?
-          </PanelHeader>
+          <PanelHeader>Какие цвета твои?</PanelHeader>
           <ColorRibbon colors={this.state.colors} animated={true} />
           <Div>
             <div className="tile-directions">{this.state.directions || '\u00A0'}</div>
@@ -102,7 +99,7 @@ export default class ColorTilesGame extends React.Component {
     const animationClass = this.state.view === RETRY_INIT_TRANSITION ? 'message--fade-out' : 'message--fade-in';
     return (
       <div className={`message ${animationClass}`}>
-        <p>Очень жаль, но ты ошибся. Вернись в начало и попробуй еще раз ;)</p>
+        <p>Упс, ошибочка! Вернись в начало и попробуй еще раз ;)</p>
         <Button size="l" level="1" stretched={true} onClick={() => {
           this.setState({ view: RETRY_INIT_TRANSITION });
           setTimeout(() => this.setState({ view: INIT, directions: initialDirections }), animationDuration);
@@ -115,7 +112,7 @@ export default class ColorTilesGame extends React.Component {
     return (
       <div className="message message--fade-in">
         <p>Поздравляем, ты прошел обряд инициации!</p>
-        <Button size="l" level="1" stretched={true} onClick={this.props.go} data-to="quest-map">
+        <Button size="l" level="1" stretched={true} onClick={() => this.props.onGameComplete(this.state.colors)}>
           Вперед, к приключениям!
         </Button>
       </div>
