@@ -86,10 +86,10 @@ export default class Monster extends React.Component {
     });
   }
 
-  renderResultPanel({ name, spriteDefeated }) {
+  renderResultPanel({ name, spriteDefeated, onVictory }) {
     const completed = <>
       <img className="monster-sprite" alt={name} src={spriteDefeated} />
-      <p>Поздравляем, ты победил!</p>
+      <p>{onVictory}</p>
       <Button size="l" level="1" onClick={this.props.go} data-to="quest-map">Далее</Button>
     </>;
     const failed = <>
