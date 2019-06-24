@@ -34,7 +34,11 @@ export default class App extends React.Component {
     }
     return (
       <Root activeView={this.state.view}>
-        <Home id="home" user={this.state.vk && this.state.vk.user} go={this.go} />
+        <Home id="home" user={this.state.vk && this.state.vk.user} go={this.go}
+          resetSavestate={this.state.vk ? async () => {
+            await this.state.vk.storage.set('savestate', '');
+            this.setState({ savestate: initialSavestate });
+          } : undefined} />
         <ColorTilesGame id="color-tiles-game" go={this.go} />
         <QuestMap id="quest-map" go={this.go} savestate={this.state.savestate} />
         <Monster id="monster" go={this.go} send={this.state.vk && this.state.vk.send}
