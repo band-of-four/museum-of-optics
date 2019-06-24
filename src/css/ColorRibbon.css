@@ -8,19 +8,19 @@
 
 .color-ribbon__item {
   height: 6px;
-  width: 25vw;
+  width: 100%;
 }
 
 .color-ribbon__item:first-child {
   border-radius: 3px 0 0 3px;
 }
 
-.color-ribbon__item:nth-child(4) {
+.color-ribbon__item:last-child:not(:first-child) {
   border-radius: 0 3px 3px 0;
 }
 
 .color-ribbon__item--animated {
-  animation: color-slide-in .3s ease-out forwards;
+  animation: color-slide-in .4s ease-out forwards;
 }
 
 .color-ribbon__item--b {
@@ -41,5 +41,5 @@
 
 @keyframes color-slide-in {
   0% { width: 0; }
-  100% { width: 25vw; }
+  100% { width: 100%; }
 }
