@@ -20,7 +20,7 @@ import CylinDemon from '../img/monsters/cylindemon.png';
 import CylinDemonDefeated from '../img/monsters/cylindemon_defeated.png';
 
 const monsters = {
-  2: {
+  1: {
     name: 'Бронированный Рыцарь',
     sprite: HeavyKnight,
     spriteDefeated: HeavyKnightDefeated,
@@ -33,7 +33,7 @@ const monsters = {
     ),
     onVictory: 'Посмотрев на рыцаря через тепловизор, ты замечаешь, что его рука не защищена доспехом. Это твой шанс! Один точный удар и враг повержен!'
   },
-  3: {
+  2: {
     name: 'Забытая Цитадель',
     sprite: ForgottenFortress,
     spriteDefeated: ForgottenFortressDefeated,
@@ -46,7 +46,7 @@ const monsters = {
     ),
     onVictory: 'Вот оно! Теперь ясно видно, куда надо метить! Массивный камень взмыл в воздух и Забытая Цитадель осталась лишь историей.'
   },
-  4: {
+  3: {
     name: 'Зеркальный',
     sprite: Specular,
     spriteDefeated: Specular,
@@ -59,7 +59,7 @@ const monsters = {
     ),
     onVictory: 'Теперь, когда все стало на свои места победить этого монстра стало сущим пустяком!'
   },
-  5: {
+  4: {
     name: 'Медуза',
     sprite: Medusa,
     spriteDefeated: MedusaDefeated,
@@ -72,7 +72,7 @@ const monsters = {
     ),
     onVictory: 'Ты победно осматриваешь окаменевшую фигуру... Но надо продолжать путь!'
   },
-  6: {
+  5: {
     name: 'Трехмерный Тролль',
     sprite: Troll3D,
     spriteDefeated: Troll3Defeated,
@@ -85,7 +85,7 @@ const monsters = {
     ),
     onVictory: 'Надев очки ты сразу начинаешь видеть противника ясно - теперь дело за малым. Монстр повержен, пора в дорогу.'
   },
-  7: {
+  6: {
     name: 'Фиолетовый Демон',
     sprite: VioletDemon,
     spriteDefeated: VioletDemonDefeated,
@@ -98,7 +98,7 @@ const monsters = {
     ),
     onVictory: 'В свете ультрафиолетовых ламп вырисовываются очертания монстра - ты знаешь, что делать дальше. Ещё один противник позади, но нельзя медлить - дальше тебя ждут другие приключения!'
   },
-  8: {
+  7: {
     name: 'Ночной Кошмар',
     sprite: Nightmare,
     spriteDefeated: NightmareDefeated,
@@ -111,7 +111,7 @@ const monsters = {
     ),
     onVictory: 'Через инфракрасную камеру монстр виден даже в кромешной тьме. А большего и не требуется, ещё одна победа на твоем счету!'
   },
-  9: {
+  8: {
     name: 'Тень',
     sprite: Shadow,
     spriteDefeated: ShadowDefeated,
@@ -124,7 +124,7 @@ const monsters = {
     ),
     onVictory: 'Теперь ничто не мешает тебе расправиться с противником. Теперь ты на шаг ближе к своей цели, продолжим путь!'
   },
-  10: {
+  9: {
     name: 'Стереозавр',
     sprite: Stereozavr,
     spriteDefeated: StereozavrDefeated,
@@ -137,7 +137,7 @@ const monsters = {
     ),
     onVictory: 'Ты сосредоточенно повторил то, чему тебя научили в резиденции и наваждение рассеялось! Дальше все просто - монстр теперь беззащитен, а исход боя предрешен. Но медлить нельзя - дорога зовет!'
   },
-  11: {
+  10: {
     name: 'Демон Цилиндра',
     sprite: CylinDemon,
     spriteDefeated: CylinDemonDefeated,
