@@ -1,6 +1,7 @@
 import React from 'react';
 import { Root, Div, Spinner } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
+import './css/global.css';
 import { setupVkIntegration } from './lib/vk';
 import { initialSavestate } from './lib/savestate';
 

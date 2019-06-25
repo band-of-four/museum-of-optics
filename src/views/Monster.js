@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Panel, PanelHeader, Div, Button } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader, Div, Button, FixedLayout } from '@vkontakte/vkui';
 import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack';
 import PanelHeaderClose from '@vkontakte/vkui/dist/components/PanelHeaderClose/PanelHeaderClose';
+import ActionLayout from '../components/ActionLayout';
 import '../css/Monster.css';
 import qrCodeExample from '../img/qr-code-example.svg';
 import monsters from '../lib/monsters';
@@ -33,14 +34,12 @@ export default class Monster extends React.Component {
         <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="quest-map" />}>
           {name}
         </PanelHeader>
-        <div className="monster-main">
+        <ActionLayout
+          primary={['В бой', { onClick: this.setView('monster-action') }]}
+          secondary={['Подсказка', { onClick: this.setView('monster-hint') }]}>
           <img className="monster-sprite" alt={name} src={sprite} />
           <p>{description}</p>
-        </div>
-        <div className="monster-buttons">
-          <Button size="l" level="1" onClick={this.setView('monster-action')}>В бой</Button>
-          <Button size="l" level="2" onClick={this.setView('monster-hint')}>Подсказка</Button>
-        </div>
+        </ActionLayout>
       </Panel>
     );
   }
@@ -48,10 +47,12 @@ export default class Monster extends React.Component {
   renderHintPanel({ name, hint }) {
     return (
       <Panel id="monster-hint" theme="white">
-        <PanelHeader left={<PanelHeaderClose children="Закрыть" onClick={this.setView('monster-intro')} />}>
+        <PanelHeader>
           {name}
         </PanelHeader>
-        <Div>{hint}</Div>
+        <ActionLayout primary={['Закрыть', { onClick: this.setView('monster-intro') }]}>
+          <p>{hint}</p>
+        </ActionLayout>
       </Panel>
     );
   }
@@ -59,16 +60,23 @@ export default class Monster extends React.Component {
   renderActionPanel({ name, correctQr }) {
     return (
       <Panel id="monster-action" theme="white" centered={true}>
-        <PanelHeader left={<PanelHeaderClose children="Закрыть" onClick={this.setView('monster-intro')} />}>
+        <PanelHeader left={<PanelHeaderClose children="Назад" onClick={this.setView('monster-intro')} />}>
           {name}
         </PanelHeader>
-        <p className="monster-action-tip">
-          Найди в музее нужный артефакт:
-        </p>
-        <img alt="Пример QR-кода" src={qrCodeExample} className="monster-action-qr" />
-        <div className="monster-buttons">
-          <Button size="l" level="1" onClick={this.applyQrCode(correctQr)}>Применить</Button>
-        </div>
+        <ActionLayout primary={['Применить', { onClick: this.applyQrCode(correctQr) }]}>
+          <div className="center">
+            <p>
+              Найди в музее нужный артефакт, рядом с котором есть код:
+            </p>
+            <img alt="Пример QR-кода" src={qrCodeExample} className="monster-action-qr" />
+            <p>
+              Нажми "Применить" и наведи на код камеру своего телефона.
+            </p>
+            <p className="secondary-text">
+              Помни, что один артефакт можно использовать только один раз.
+            </p>
+          </div>
+        </ActionLayout>
       </Panel>
     );
   }
@@ -90,23 +98,17 @@ export default class Monster extends React.Component {
   }
 
   renderResultPanel({ name, spriteDefeated, onVictory }) {
-    const completed = <>
-      <div className="monster-main">
+    const completed = (
+      <ActionLayout primary={['Продолжить', { onClick: this.props.go, 'data-to': 'quest-map' }]}>
         <img className="monster-sprite" alt={name} src={spriteDefeated} />
         <p>{onVictory}</p>
-      </div>
-      <div className="monster-buttons">
-        <Button size="l" level="1" onClick={this.props.go} data-to="quest-map">Далее</Button>
-      </div>
-    </>;
-    const failed = <>
-      <div className="monster-main">
+      </ActionLayout>
+    );
+    const failed = (
+      <ActionLayout primary={['Вернуться', { onClick: this.setView('monster-action') }]}>
         <p>К сожалению, этот артефакт никак не подействовал на монстра. Подумай еще ;)</p>
-      </div>
-      <div className="monster-buttons">
-        <Button size="l" level="1" onClick={this.setView('monster-action')}>Вернуться</Button>
-      </div>
-    </>;
+      </ActionLayout>
+    );
     return (
       <Panel id="monster-result" theme="white" centered={true}>
         <PanelHeader>{name}</PanelHeader>

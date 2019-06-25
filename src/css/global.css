@@ -1,0 +1,12 @@
+p {
+  font-size: 17px;
+  line-height: 1.3em;
+}
+
+.center {
+  text-align: center;
+}
+
+.secondary-text {
+  color: var(--text_secondary);
+}

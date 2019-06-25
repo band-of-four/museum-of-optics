@@ -1,0 +1,16 @@
+.action-layout__content {
+  padding: 16px 18px 72px;
+}
+
+.action-layout__buttons {
+  display: flex;
+  box-sizing: border-box;
+  /* width: 100%; */
+  padding: 8px 16px 16px;
+  background: #fff;
+  box-shadow: 0px -20px 20px 0px #fff;
+}
+
+.action-layout__buttons > :not(:first-child) {
+  margin-left: 8px;
+}
