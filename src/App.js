@@ -48,7 +48,7 @@ export default class App extends React.Component {
         <Monster id="monster" go={this.go} send={this.state.vk && this.state.vk.send}
           savestate={this.state.savestate} updateSavestate={this.updateSavestate}
           {...this.state.perViewProps.monster} />
-        <Forest id="forest" go={this.go} />
+        <Forest id="forest" go={this.go} colors={this.state.colors} />
         {/* Development tools (TODO: delet this) */}
         <Home id="home" user={this.state.vk && this.state.vk.user} go={this.go}
           resetSavestate={this.state.vk ? async () => {

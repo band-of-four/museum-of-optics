@@ -15,7 +15,6 @@ const INIT = 0, INIT_TRANSITION = 1,
 
 const initialDirections = 'Синяя или красная?';
 const animationDuration = 800;
-const turnsToWin = 3;
 
 export default class ColorTilesGame extends React.Component {
   constructor(props) {

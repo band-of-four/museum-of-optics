@@ -1,0 +1,76 @@
+.forest-letter-container {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+.forest-letter {
+  width: 18vw;
+  height: 18vw;
+  margin: 8px;
+  line-height: 18vw;
+
+  border: 1px solid;
+  border-radius: 6px;
+  box-shadow: inset 0px 0px 6px 0px;
+}
+
+.forest-letter:hover, .forest-letter:focus {
+  box-shadow: inset 0px 0px 16px 0px;
+}
+
+.forest-letter__text {
+  font-size: 2em;
+  color: #000;
+}
+
+.forest-letter--b {
+  background: #d4ebff;
+  color: #9eb7d1;
+}
+
+.forest-letter--r {
+  background: #f2c2b1;
+  color: #d19a85;
+}
+
+.forest-letter--y {
+  background: #f4eeab;
+  color: #cbc47e;
+}
+
+.forest-letter--g {
+  background: #c5e695;
+  color: #9ab474;
+}
+
+.forest-popout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 192px;
+  margin: auto 24px;
+  padding: 24px;
+
+  background-color: #fff;
+  border-radius: 12px;
+}
+
+.forest-popout--android {
+  box-shadow: 0 20px 35px 0 #0000004d, 0 0 35px 0 #00000038;
+}
+
+.forest-popout__letter {
+  width: 80px;
+  height: 80px;
+  margin: 8px;
+
+  font-size: 40px;
+  background: #fff;
+  border: 1px solid #9a9a9a;
+  border-radius: 12px;
+}
+
+.forest-popout__letter:hover, .forest-popout__letter:focus {
+  background: #eceaea;
+}
