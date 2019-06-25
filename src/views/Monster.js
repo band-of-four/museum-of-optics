@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, Panel, PanelHeader, Div, Button, FixedLayout } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader } from '@vkontakte/vkui';
 import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack';
 import PanelHeaderClose from '@vkontakte/vkui/dist/components/PanelHeaderClose/PanelHeaderClose';
 import ActionLayout from '../components/ActionLayout';
-import '../css/Monster.css';
 import qrCodeExample from '../img/qr-code-example.svg';
 import monsters from '../lib/monsters';
 import { updateSavestateOnCompletion } from '../lib/savestate';
@@ -30,14 +29,14 @@ export default class Monster extends React.Component {
 
   renderIntroPanel({ name, sprite, description }) {
     return (
-      <Panel id="monster-intro" theme="white" centered={true}>
+      <Panel id="monster-intro" theme="white">
         <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="quest-map" />}>
           {name}
         </PanelHeader>
         <ActionLayout
           primary={['В бой', { onClick: this.setView('monster-action') }]}
           secondary={['Подсказка', { onClick: this.setView('monster-hint') }]}>
-          <img className="monster-sprite" alt={name} src={sprite} />
+          <img className="block-image" alt={name} src={sprite} />
           <p>{description}</p>
         </ActionLayout>
       </Panel>
@@ -47,11 +46,9 @@ export default class Monster extends React.Component {
   renderHintPanel({ name, hint }) {
     return (
       <Panel id="monster-hint" theme="white">
-        <PanelHeader>
-          {name}
-        </PanelHeader>
+        <PanelHeader>{name}</PanelHeader>
         <ActionLayout primary={['Закрыть', { onClick: this.setView('monster-intro') }]}>
-          <p>{hint}</p>
+          {hint}
         </ActionLayout>
       </Panel>
     );
@@ -59,7 +56,7 @@ export default class Monster extends React.Component {
 
   renderActionPanel({ name, correctQr }) {
     return (
-      <Panel id="monster-action" theme="white" centered={true}>
+      <Panel id="monster-action" theme="white">
         <PanelHeader left={<PanelHeaderClose children="Назад" onClick={this.setView('monster-intro')} />}>
           {name}
         </PanelHeader>
@@ -68,7 +65,7 @@ export default class Monster extends React.Component {
             <p>
               Найди в музее нужный артефакт, рядом с котором есть код:
             </p>
-            <img alt="Пример QR-кода" src={qrCodeExample} className="monster-action-qr" />
+            <img alt="Пример QR-кода" src={qrCodeExample} style={{ maxWidth: '200px' }} />
             <p>
               Нажми "Применить" и наведи на код камеру своего телефона.
             </p>
@@ -100,7 +97,7 @@ export default class Monster extends React.Component {
   renderResultPanel({ name, spriteDefeated, onVictory }) {
     const completed = (
       <ActionLayout primary={['Продолжить', { onClick: this.props.go, 'data-to': 'quest-map' }]}>
-        <img className="monster-sprite" alt={name} src={spriteDefeated} />
+        <img className="block-image" alt={name} src={spriteDefeated} />
         <p>{onVictory}</p>
       </ActionLayout>
     );
@@ -110,7 +107,7 @@ export default class Monster extends React.Component {
       </ActionLayout>
     );
     return (
-      <Panel id="monster-result" theme="white" centered={true}>
+      <Panel id="monster-result" theme="white">
         <PanelHeader>{name}</PanelHeader>
         {this.state.completed ? completed : failed}
       </Panel>
