@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Panel, PanelHeader, Div, Button } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader, FixedLayout } from '@vkontakte/vkui';
 import ColorRibbon from '../components/ColorRibbon';
+import ActionLayout from '../components/ActionLayout';
 import '../css/ColorTilesGame.css';
 import blueTile from '../img/tiles/blue.png';
 import yellowTile from '../img/tiles/yellow.png';
@@ -64,65 +65,60 @@ export default class ColorTilesGame extends React.Component {
                 : view === WIN_TRANSITION ? 'tile-container--win-transition' : '';
     return (
       <View id={this.props.id} activePanel="color-tiles-main">
-        <Panel id="color-tiles-main" theme="white">
-          <PanelHeader>Какие цвета твои?</PanelHeader>
-          <ColorRibbon colors={this.state.colors} animated={true} />
-          <Div>
+        <Panel id="color-tiles-main" theme="white" centered>
+          <PanelHeader noShadow>Какие цвета твои?</PanelHeader>
+          <FixedLayout vertical="top">
+            <ColorRibbon colors={this.state.colors} animated />
             <div className="tile-directions">{this.state.directions || '\u00A0'}</div>
-            <div className="tile-container-wrapper">
-              <div className={`tile-container ${containerClass}`}>
-                <div>
-                  <button onClick={this.tileSelected('b')}
-                    className="tile-button" style={{ backgroundImage: `url('${blueTile}')` }} />
-                  <button onClick={this.tileSelected('r')}
-                    className="tile-button" style={{ backgroundImage: `url('${redTile}')` }} />
-                </div>
-                <div>
-                  <button onClick={view !== INIT ? this.tileSelected('y') : undefined}
-                    className="tile-button" style={{ backgroundImage: `url('${yellowTile}')` }} />
-                  <button onClick={view !== INIT ? this.tileSelected('g') : undefined}
-                    className="tile-button" style={{ backgroundImage: `url('${greenTile}')` }} />
-                </div>
+          </FixedLayout>
+          <div className="tile-container-wrapper">
+            <div className={`tile-container ${containerClass}`}>
+              <div>
+                <button onClick={this.tileSelected('b')}
+                  className="tile-button" style={{ backgroundImage: `url('${blueTile}')` }} />
+                <button onClick={this.tileSelected('r')}
+                  className="tile-button" style={{ backgroundImage: `url('${redTile}')` }} />
               </div>
-              {(view === RETRY || view === RETRY_INIT_TRANSITION) && this.renderRetryMessage()}
-              {view === WIN && this.renderWinMessage()}
+              <div>
+                <button onClick={view !== INIT ? this.tileSelected('y') : undefined}
+                  className="tile-button" style={{ backgroundImage: `url('${yellowTile}')` }} />
+                <button onClick={view !== INIT ? this.tileSelected('g') : undefined}
+                  className="tile-button" style={{ backgroundImage: `url('${greenTile}')` }} />
+              </div>
             </div>
-            {(view === INIT || view === INIT_TRANSITION || view === TURN || view === TURN_TRANSITION) && this.renderHelpMessage()}
-          </Div>
+            {(view === RETRY || view === RETRY_INIT_TRANSITION) && this.renderRetryMessage()}
+            {view === WIN && this.renderWinMessage()}
+          </div>
         </Panel>
       </View>
     );
   }
 
   renderRetryMessage() {
-    const animationClass = this.state.view === RETRY_INIT_TRANSITION ? 'message--fade-out' : 'message--fade-in';
+    const animationClass = this.state.view === RETRY_INIT_TRANSITION ? 'message-fade-out' : 'message-fade-in';
     return (
-      <div className={`message ${animationClass}`}>
-        <p>Упс, ошибочка! Вернись в начало и попробуй еще раз ;)</p>
-        <Button size="l" level="1" stretched={true} onClick={() => {
-          this.setState({ view: RETRY_INIT_TRANSITION });
-          setTimeout(() => this.setState({ view: INIT, directions: initialDirections }), animationDuration);
-        }}>Окей</Button>
+      <div className={animationClass}>
+        <ActionLayout primary={['Продолжить', { onClick: this.onClickRetryButton }]}>
+          <p className="center">Упс, ошибочка! Вернись в начало и попробуй еще раз ;)</p>
+        </ActionLayout>
       </div>
     );
+  }
+
+  onClickRetryButton = () => {
+    this.setState({ view: RETRY_INIT_TRANSITION });
+    setTimeout(() => this.setState({ view: INIT, directions: initialDirections }), animationDuration);
   }
 
   renderWinMessage() {
     return (
-      <div className="message message--fade-in">
-        <p>Поздравляем, ты прошел обряд инициации!</p>
-        <Button size="l" level="1" stretched={true} onClick={() => this.props.onGameComplete(this.state.colors)}>
-          Вперед, к приключениям!
-        </Button>
+      <div className="message-fade-in">
+        <ActionLayout primary={['Вперед, к приключениям!', { onClick: this.onClickWinButton }]}>
+          <p className="center">Поздравляю, твой обряд инициации закончен!</p>
+        </ActionLayout>
       </div>
     );
   }
 
-  renderHelpMessage() {
-    return (
-      <div className="tile-help">
-        Встань лицом к каталогу Аббе
-      </div>
-    );
-  }
+  onClickWinButton = () => this.props.onGameComplete(this.state.colors);
 }

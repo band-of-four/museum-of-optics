@@ -1,14 +1,9 @@
-.tile-directions, .tile-help {
-  text-align: center;
-  padding: 16px;
-}
-
 .tile-directions {
-  font-size: 1.25em;
-}
+  margin: 12vh auto 0;
+  max-width: 232px;
 
-.tile-help {
-  color: var(--text_secondary);
+  font-size: 1.25em;
+  text-align: center;
 }
 
 .tile-button {
@@ -20,8 +15,7 @@
   border-radius: 4px;
 
   /* Reset default button styles */
-  border: none;
-  outline: inherit;
+  border: 0;
 }
 
 .tile-row {
@@ -78,17 +72,11 @@
   display: none;
 }
 
-.message {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
-.message--fade-in {
+.message-fade-in {
   animation: fade-in .2s ease-in forwards;
 }
 
-.message--fade-out {
+.message-fade-out {
   animation: fade-out .4s ease-in forwards;
 }
 
