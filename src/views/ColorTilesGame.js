@@ -1,12 +1,9 @@
 import React from 'react';
 import { View, Panel, PanelHeader, FixedLayout } from '@vkontakte/vkui';
 import ColorRibbon from '../components/ColorRibbon';
+import ColorTiles from '../components/ColorTiles';
 import ActionLayout from '../components/ActionLayout';
 import '../css/ColorTilesGame.css';
-import blueTile from '../img/tiles/blue.png';
-import yellowTile from '../img/tiles/yellow.png';
-import redTile from '../img/tiles/red.png';
-import greenTile from '../img/tiles/green.png';
 import { computeTurn, computeInitTurn } from '../lib/ColorTilesGame.js';
 
 const INIT = 0, INIT_TRANSITION = 1,
@@ -63,6 +60,12 @@ export default class ColorTilesGame extends React.Component {
             : (view === RETRY || view === WIN) ? 'tile-container--hidden'
               : view === RETRY_INIT_TRANSITION ? 'tile-container--retry-init-transition'
                 : view === WIN_TRANSITION ? 'tile-container--win-transition' : '';
+    const tilesOnClick = {
+      b: this.tileSelected('b'),
+      r: this.tileSelected('r'),
+      y: view !== INIT ? this.tileSelected('y') : undefined,
+      g: view !== INIT ? this.tileSelected('g') : undefined
+    };
     return (
       <View id={this.props.id} activePanel="color-tiles-main">
         <Panel id="color-tiles-main" theme="white" centered>
@@ -71,24 +74,10 @@ export default class ColorTilesGame extends React.Component {
             <ColorRibbon colors={this.state.colors} animated />
             <div className="tile-directions">{this.state.directions || '\u00A0'}</div>
           </FixedLayout>
-          <div className="tile-container-wrapper">
-            <div className={`tile-container ${containerClass}`}>
-              <div>
-                <button onClick={this.tileSelected('b')}
-                  className="tile-button" style={{ backgroundImage: `url('${blueTile}')` }} />
-                <button onClick={this.tileSelected('r')}
-                  className="tile-button" style={{ backgroundImage: `url('${redTile}')` }} />
-              </div>
-              <div>
-                <button onClick={view !== INIT ? this.tileSelected('y') : undefined}
-                  className="tile-button" style={{ backgroundImage: `url('${yellowTile}')` }} />
-                <button onClick={view !== INIT ? this.tileSelected('g') : undefined}
-                  className="tile-button" style={{ backgroundImage: `url('${greenTile}')` }} />
-              </div>
-            </div>
+          <ColorTiles containerClass={containerClass} onClick={tilesOnClick}>
             {(view === RETRY || view === RETRY_INIT_TRANSITION) && this.renderRetryMessage()}
             {view === WIN && this.renderWinMessage()}
-          </div>
+          </ColorTiles>
         </Panel>
       </View>
     );

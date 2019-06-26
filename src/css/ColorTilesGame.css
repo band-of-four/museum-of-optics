@@ -6,30 +6,6 @@
   text-align: center;
 }
 
-.tile-button {
-  margin: 8px;
-  display: inline-block;
-  width: 100px;
-  height: 100px;
-  background-size: contain;
-  border-radius: 4px;
-
-  /* Reset default button styles */
-  border: 0;
-}
-
-.tile-row {
-  display: flex;
-  justify-content: center;
-}
-
-.tile-container-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px;
-}
-
 .tile-container--init-transition,
 .tile-container--turn-transition,
 .tile-container--win-transition {
@@ -37,20 +13,20 @@
   animation: container .8s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
 }
 
-.tile-container--init-transition .tile-button,
-.tile-container--turn-transition .tile-button {
+.tile-container--init-transition .ColorTiles__button,
+.tile-container--turn-transition .ColorTiles__button {
   animation: tile .8s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
 }
 
-.tile-container--init > div:last-child > .tile-button {
+.tile-container--init > div:last-child > .ColorTiles__button {
   opacity: 0;
 }
 
-.tile-container--init-transition > div:first-child > .tile-button {
+.tile-container--init-transition > div:first-child > .ColorTiles__button {
   animation: init-visible-row-tile .8s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
 }
 
-.tile-container--init-transition > div:last-child > .tile-button {
+.tile-container--init-transition > div:last-child > .ColorTiles__button {
   animation: init-hidden-row-tile .8s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
 }
 
@@ -58,7 +34,7 @@
   animation: fade-out .8s ease-in forwards;
 }
 
-.tile-container--win-transition .tile-button {
+.tile-container--win-transition .ColorTiles__button {
   animation: tile-win .8s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
 }
 

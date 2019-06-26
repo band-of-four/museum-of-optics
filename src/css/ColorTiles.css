@@ -1,0 +1,18 @@
+.ColorTiles__button {
+  margin: 8px;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  border-radius: 4px;
+
+  /* Reset default button styles */
+  border: 0;
+}
+
+.ColorTiles__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
