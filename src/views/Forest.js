@@ -1,5 +1,7 @@
 import React from 'react';
-import { getClassName, View, Panel, PanelHeader, Div, Button, PopoutWrapper } from '@vkontakte/vkui';
+import { getClassName, View, Panel, PanelHeader, PopoutWrapper } from '@vkontakte/vkui';
+import ActionLayout from '../components/ActionLayout';
+import ColorTiles from '../components/ColorTiles';
 import '../css/Forest.css';
 
 const popoutClass = getClassName('forest-popout');
@@ -19,29 +21,26 @@ export default class Forest extends React.Component {
       <View id={this.props.id} activePanel={this.state.view} popout={this.state.popout}>
         <Panel id="forest-intro" theme="white">
           <PanelHeader>Лес</PanelHeader>
-          <Div style={{ textAlign: "center" }}>
-            <p>
+          <ActionLayout primary={['Начнем', { onClick: () => this.setState({ view: 'forest-code' }) }]}>
+            <p className="center">
               Лес приветствует тебя
             </p>
-            <Button size="l" level="1" onClick={() => this.setState({ view: 'forest-code' })}>
-              Поприветствовать лес в ответ
-            </Button>
-          </Div>
+          </ActionLayout>
         </Panel>
-        <Panel id="forest-code" theme="white">
+        <Panel id="forest-code" theme="white" centered>
           <PanelHeader>Лес</PanelHeader>
-          <Div style={{ textAlign: "center" }}>
-            <p>
-              Хмм, код... Какой такой код?
+          <p>
+            Хмм, код... Какой такой код?
             </p>
-            <div className="forest-letter-container">
-              {this.props.colors.map((c, i) =>
-                <button key={i} data-index={i} className={`forest-letter forest-letter--${c}`} onClick={this.showLetterPopout(i)}>
-                  <span className="forest-letter__text">{this.state.letters[i]}</span>
-                </button>
-              )}
-            </div>
-          </Div>
+          <ColorTiles inline onClick={{}} colors={this.props.colors} text={this.state.letters} buttonClass="forest-button">
+          </ColorTiles>
+          <div className="forest-letter-container">
+            {this.props.colors.map((c, i) =>
+              <button key={i} data-index={i} className={`forest-letter forest-letter--${c}`} onClick={this.showLetterPopout(i)}>
+                <span className="forest-letter__text">{this.state.letters[i]}</span>
+              </button>
+            )}
+          </div>
         </Panel>
       </View>
     );

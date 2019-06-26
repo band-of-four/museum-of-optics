@@ -5,19 +5,32 @@ import yellowTile from '../img/tiles/yellow.png';
 import redTile from '../img/tiles/red.png';
 import greenTile from '../img/tiles/green.png';
 
-// onClick: an object of { (b, r, y, g): onClick handler }
+const tileUrls = {
+  b: `url('${blueTile}')`,
+  r: `url('${redTile}')`,
+  y: `url('${yellowTile}')`,
+  g: `url('${greenTile}')`
+};
+
+// colors: an array of 4 items, each one of 'b', 'r', 'y', 'g'
+// onClick: an array of 4 callback functions, one for each of the buttons
+// text: (optional) an array of 4 strings, one for each of the buttons
 export default function ColorTiles(props) {
+  const wrapperClass = 'ColorTiles__wrapper' + (props.inline ? ' ColorTiles__wrapper--inline' : '');
+  const containerClass = (props.containerClass || '') + (props.inline ? ' ColorTiles__container--inline' : '');
+  const buttonClass = (props.buttonClass || '') + ' ColorTiles__button' + (props.inline ? ' ColorTiles__button--inline' : '');
+
+  const buttons = props.colors.map((color, i) =>
+    <button key={i} onClick={props.onClick[i]} className={buttonClass} style={{ backgroundImage: tileUrls[color] }}>
+      {props.text && props.text[i]}
+    </button>
+  );
+
   return (
-    <div className="ColorTiles__wrapper">
-      <div className={props.containerClass}>
-        <div>
-          <button onClick={props.onClick.b} className="ColorTiles__button" style={{ backgroundImage: `url('${blueTile}')` }} />
-          <button onClick={props.onClick.r} className="ColorTiles__button" style={{ backgroundImage: `url('${redTile}')` }} />
-        </div>
-        <div>
-          <button onClick={props.onClick.y} className="ColorTiles__button" style={{ backgroundImage: `url('${yellowTile}')` }} />
-          <button onClick={props.onClick.g} className="ColorTiles__button" style={{ backgroundImage: `url('${greenTile}')` }} />
-        </div>
+    <div className={wrapperClass}>
+      <div className={containerClass}>
+        <div>{buttons.slice(0, 2)}</div>
+        <div>{buttons.slice(2, 4)}</div>
       </div>
       {props.children}
     </div>

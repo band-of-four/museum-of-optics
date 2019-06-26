@@ -47,6 +47,6 @@ const renderForest = (savestate, go) => {
 };
 
 const renderPaths = (savestate) =>
-  computePaths(savestate).map(({ state, ...svg }) => (
-    <path className={`map-path map-path--${state}`} {...svg} />
+  computePaths(savestate).map(({ state, ...svg }, i) => (
+    <path key={i} className={`map-path map-path--${state}`} {...svg} />
   ));

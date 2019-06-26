@@ -1,3 +1,9 @@
+.forest-button {
+  color: #fff;
+  font-size: 8vw;
+  text-shadow: 0px 0px 4px #00000085;
+}
+
 .forest-letter-container {
   display: flex;
   justify-content: center;

@@ -16,3 +16,24 @@
   align-items: center;
   padding: 30px;
 }
+
+.ColorTiles__wrapper--inline {
+  padding: 16px 8px;
+}
+
+.ColorTiles__button--inline {
+  width: 18vw;
+  height: 18vw;
+  max-width: 128px;
+  max-height: 128px;
+}
+
+.ColorTiles__container--inline {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ColorTiles__container--inline > div {
+  flex-shrink: 0;
+}

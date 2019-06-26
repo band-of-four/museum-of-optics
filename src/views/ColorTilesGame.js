@@ -60,12 +60,12 @@ export default class ColorTilesGame extends React.Component {
             : (view === RETRY || view === WIN) ? 'tile-container--hidden'
               : view === RETRY_INIT_TRANSITION ? 'tile-container--retry-init-transition'
                 : view === WIN_TRANSITION ? 'tile-container--win-transition' : '';
-    const tilesOnClick = {
-      b: this.tileSelected('b'),
-      r: this.tileSelected('r'),
-      y: view !== INIT ? this.tileSelected('y') : undefined,
-      g: view !== INIT ? this.tileSelected('g') : undefined
-    };
+    const tilesOnClick = [
+      this.tileSelected('b'),
+      this.tileSelected('r'),
+      view !== INIT ? this.tileSelected('y') : undefined,
+      view !== INIT ? this.tileSelected('g') : undefined
+    ];
     return (
       <View id={this.props.id} activePanel="color-tiles-main">
         <Panel id="color-tiles-main" theme="white" centered>
@@ -74,7 +74,7 @@ export default class ColorTilesGame extends React.Component {
             <ColorRibbon colors={this.state.colors} animated />
             <div className="tile-directions">{this.state.directions || '\u00A0'}</div>
           </FixedLayout>
-          <ColorTiles containerClass={containerClass} onClick={tilesOnClick}>
+          <ColorTiles colors={['b', 'r', 'y', 'g']} containerClass={containerClass} onClick={tilesOnClick}>
             {(view === RETRY || view === RETRY_INIT_TRANSITION) && this.renderRetryMessage()}
             {view === WIN && this.renderWinMessage()}
           </ColorTiles>
