@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/museum-of-optics/static/media/forgotten_fortress_defeated.85f7d86a.png"
   },
   {
-    "revision": "090b9e8c454ac9722276",
-    "url": "/museum-of-optics/static/css/main.81d8d3c5.chunk.css"
+    "revision": "c8d610de0186d5a5c552",
+    "url": "/museum-of-optics/static/css/main.df3b4506.chunk.css"
   },
   {
     "revision": "075a6a8dfff59410a222",
@@ -16,8 +16,8 @@ self.__precacheManifest = [
     "url": "/museum-of-optics/static/media/cylindemon_defeated.aca6e4c3.png"
   },
   {
-    "revision": "fbbc4cd057cf230351ab",
-    "url": "/museum-of-optics/static/js/2.d96833ed.chunk.js"
+    "revision": "25b82664cf5fb9cb46d7",
+    "url": "/museum-of-optics/static/js/2.0736f6ae.chunk.js"
   },
   {
     "revision": "b330c4866a6deab67ec708fbcc89c8de",
@@ -56,8 +56,8 @@ self.__precacheManifest = [
     "url": "/museum-of-optics/static/media/forgotten_fortress.08ac9a3c.png"
   },
   {
-    "revision": "090b9e8c454ac9722276",
-    "url": "/museum-of-optics/static/js/main.98a32cce.chunk.js"
+    "revision": "c8d610de0186d5a5c552",
+    "url": "/museum-of-optics/static/js/main.8b752286.chunk.js"
   },
   {
     "revision": "84f6ee0a38af3abc8f20f0f377c385c2",
@@ -108,11 +108,11 @@ self.__precacheManifest = [
     "url": "/museum-of-optics/static/media/cylindemon.e9ebff9b.png"
   },
   {
-    "revision": "fbbc4cd057cf230351ab",
+    "revision": "25b82664cf5fb9cb46d7",
     "url": "/museum-of-optics/static/css/2.c945ad26.chunk.css"
   },
   {
-    "revision": "4dd2a2361f68c4609b3cd0fcac1a3d28",
+    "revision": "19faf776c42f2fbd8a24813ef10b7940",
     "url": "/museum-of-optics/index.html"
   }
 ];
