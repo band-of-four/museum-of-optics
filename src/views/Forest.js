@@ -28,14 +28,14 @@ export default class Forest extends React.Component {
           <PanelHeader>Лес</PanelHeader>
           <ActionLayout primary={['Начнем', { onClick: () => this.setState({ view: 'forest-code' }) }]}>
             <p className="center">
-              Лес приветствует тебя
+              Лес приветствует тебя<br/>Тут проходит финальная часть инициации. Говорят, что разноцветные деревья в этом лесу хранят ключи, необходимые для вступления в Орден Оптики, и что у каждого этот ключ свой. Чтобы завершить обряд собери свой ключ.
             </p>
           </ActionLayout>
         </Panel>
         <Panel id="forest-code" theme="white" centered>
           <PanelHeader>Лес</PanelHeader>
           <FixedLayout vertical="top">
-            <p className="center">Хмм, код... Какой такой код?</p>
+            <p className="center">Собери свой ключ с помощью разноцветных деревьев Леса!</p>
           </FixedLayout>
           <ColorTiles inline buttonClass="forest-button" colors={this.props.colors} labels={letterLabels}
             onClick={this.onClickLetterHandlers} />
