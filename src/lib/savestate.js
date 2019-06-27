@@ -60,3 +60,7 @@ export function computePaths(savestate) {
 export function isForestUnlocked(savestate) {
   return Object.values(savestate).every((n) => n === 'completed');
 }
+
+export function isSavestateClean(savestate) {
+  return savestate[1] === 'available' && savestate[3] === 'available';
+}

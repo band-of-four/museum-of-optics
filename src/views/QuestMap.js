@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { View, Panel, PanelHeader } from '@vkontakte/vkui';
 import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack';
 import '../css/QuestMap.css';
-import { nodeLocations, computePaths, isForestUnlocked } from '../lib/savestate';
+import { nodeLocations, computePaths, isForestUnlocked, isSavestateClean } from '../lib/savestate';
 
 export default function QuestMap({ id, go, savestate }) {
+  const mapBottomRef = useRef(null);
+  useEffect(() => {
+    mapBottomRef.current && setTimeout(() => mapBottomRef.current.scrollIntoView({ behavior: 'smooth' }), 100);
+  }, []);
+
   return (
     <View id={id} activePanel="quest-map-main">
       <Panel id="quest-map-main" theme="white">
@@ -17,6 +22,7 @@ export default function QuestMap({ id, go, savestate }) {
             {renderForest(savestate, go)}
             {renderPaths(savestate)}
           </svg>
+          {isSavestateClean(savestate) && <div ref={mapBottomRef} />}
         </div>
       </Panel>
     </View>
