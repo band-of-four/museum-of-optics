@@ -4,52 +4,6 @@
   text-shadow: 0px 0px 8px #00000085;
 }
 
-.forest-letter-container {
-  display: flex;
-  justify-content: center;
-  padding: 24px 0;
-}
-
-.forest-letter {
-  width: 18vw;
-  height: 18vw;
-  margin: 8px;
-  line-height: 18vw;
-
-  border: 1px solid;
-  border-radius: 6px;
-  box-shadow: inset 0px 0px 6px 0px;
-}
-
-.forest-letter:hover, .forest-letter:focus {
-  box-shadow: inset 0px 0px 16px 0px;
-}
-
-.forest-letter__text {
-  font-size: 2em;
-  color: #000;
-}
-
-.forest-letter--b {
-  background: #d4ebff;
-  color: #9eb7d1;
-}
-
-.forest-letter--r {
-  background: #f2c2b1;
-  color: #d19a85;
-}
-
-.forest-letter--y {
-  background: #f4eeab;
-  color: #cbc47e;
-}
-
-.forest-letter--g {
-  background: #c5e695;
-  color: #9ab474;
-}
-
 .forest-popout-wrapper .ActionSheet {
   align-items: center;
   min-width: auto; /* Android-specific */
