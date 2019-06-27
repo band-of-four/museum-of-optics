@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Panel, PanelHeader, Div } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader } from '@vkontakte/vkui';
 import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack';
 import '../css/QuestMap.css';
 import { nodeLocations, computePaths, isForestUnlocked } from '../lib/savestate';
@@ -11,13 +11,13 @@ export default function QuestMap({ id, go, savestate }) {
         <PanelHeader left={<PanelHeaderBack onClick={go} data-to="home" />}>
           Карта
         </PanelHeader>
-        <Div style={{ textAlign: "center" }}>
+        <div className="map-container">
           <svg className="map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 264">
             {nodeLocations.map(renderMapNode(savestate, go))}
             {renderForest(savestate, go)}
             {renderPaths(savestate)}
           </svg>
-        </Div>
+        </div>
       </Panel>
     </View>
   );

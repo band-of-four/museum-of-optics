@@ -1,5 +1,6 @@
 .map {
   max-width: 260px;
+  stroke-width: 0.8;
 }
 
 .map-node--available {
@@ -32,6 +33,14 @@
 }
 
 .map-path {
-  stroke-width: 1.2;
+  stroke-width: 1;
   fill: none;
+}
+
+/* Source: https://www.heropatterns.com/ */
+.map-container {
+  padding: 16px;
+  text-align: center;
+  background: #fff;
+  background-image: url('/img/hero-patterns-topography.svg');
 }
