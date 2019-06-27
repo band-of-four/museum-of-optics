@@ -1,10 +1,8 @@
 import React from 'react';
-import { getClassName, View, Panel, PanelHeader, PopoutWrapper } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader, FixedLayout, ActionSheet, Tappable } from '@vkontakte/vkui';
 import ActionLayout from '../components/ActionLayout';
 import ColorTiles from '../components/ColorTiles';
 import '../css/Forest.css';
-
-const popoutClass = getClassName('forest-popout');
 
 export default class Forest extends React.Component {
   constructor(props) {
@@ -12,11 +10,18 @@ export default class Forest extends React.Component {
     this.state = {
       view: 'forest-intro',
       popout: null,
-      letters: ['?', '?', '?', '?']
+      letters: ['?', '?', '?', '?'],
+      letterTransition: null // an optional index of the letter that's currently being animated
     };
+    this.onClickLetterHandlers = [0, 1, 2, 3].map(this.showLetterPopout);
   }
 
   render() {
+    const letterLabels =
+      this.state.letters.map((l, i) => {
+        const transitionClass = this.state.letterTransition === i ? 'forest-letter-transition' : undefined;
+        return <span className={transitionClass}>{l}</span>
+      });
     return (
       <View id={this.props.id} activePanel={this.state.view} popout={this.state.popout}>
         <Panel id="forest-intro" theme="white">
@@ -29,39 +34,35 @@ export default class Forest extends React.Component {
         </Panel>
         <Panel id="forest-code" theme="white" centered>
           <PanelHeader>Лес</PanelHeader>
-          <p>
-            Хмм, код... Какой такой код?
-            </p>
-          <ColorTiles inline onClick={{}} colors={this.props.colors} text={this.state.letters} buttonClass="forest-button">
-          </ColorTiles>
-          <div className="forest-letter-container">
-            {this.props.colors.map((c, i) =>
-              <button key={i} data-index={i} className={`forest-letter forest-letter--${c}`} onClick={this.showLetterPopout(i)}>
-                <span className="forest-letter__text">{this.state.letters[i]}</span>
-              </button>
-            )}
-          </div>
+          <FixedLayout vertical="top">
+            <p className="center">Хмм, код... Какой такой код?</p>
+          </FixedLayout>
+          <ColorTiles inline buttonClass="forest-button" colors={this.props.colors} labels={letterLabels}
+            onClick={this.onClickLetterHandlers} />
         </Panel>
       </View>
     );
   }
 
-  showLetterPopout = (letterIdx) => () => {
-    const setLetter = (letter) => () => {
-      const letters = this.state.letters.slice();
-      letters[letterIdx] = letter;
-      this.setState({ letters });
-    };
+  showLetterPopout = (index) => () => {
+    const letters = ['α', 'β', 'λ', 'μ'].map((letter, key) => {
+      const onClick = () => {
+        const letters = this.state.letters.slice();
+        letters[index] = letter;
+        this.setState({ letters, letterTransition: index });
+        // remove the transition class so it reapplies correctly if the popout is requested for the same index
+        setTimeout(() => this.setState({ letterTransition: null }), 300);
+      }
+      return (
+        <Tappable key={key} className="forest-popout__letter" onClick={onClick}>{letter}</Tappable>
+      );
+    });
+
     this.setState({
       popout: (
-        <PopoutWrapper v="center" h="center" onClick={() => this.setState({ popout: null })}>
-          <div className={popoutClass}>
-            <button className="forest-popout__letter" onClick={setLetter('α')}>α</button>
-            <button className="forest-popout__letter" onClick={setLetter('β')}>β</button>
-            <button className="forest-popout__letter" onClick={setLetter('λ')}>λ</button>
-            <button className="forest-popout__letter" onClick={setLetter('μ')}>μ</button>
-          </div>
-        </PopoutWrapper>
+        <ActionSheet className="forest-popout-wrapper" onClose={() => this.setState({ popout: null })}>
+          <div autoclose className="forest-popout">{letters}</div>
+        </ActionSheet>
       )
     });
   }

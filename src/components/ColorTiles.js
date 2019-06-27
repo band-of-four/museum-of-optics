@@ -14,7 +14,7 @@ const tileUrls = {
 
 // colors: an array of 4 items, each one of 'b', 'r', 'y', 'g'
 // onClick: an array of 4 callback functions, one for each of the buttons
-// text: (optional) an array of 4 strings, one for each of the buttons
+// labels: (optional) an array of 4 elements, one for each of the buttons
 export default function ColorTiles(props) {
   const wrapperClass = 'ColorTiles__wrapper' + (props.inline ? ' ColorTiles__wrapper--inline' : '');
   const containerClass = (props.containerClass || '') + (props.inline ? ' ColorTiles__container--inline' : '');
@@ -22,7 +22,7 @@ export default function ColorTiles(props) {
 
   const buttons = props.colors.map((color, i) =>
     <button key={i} onClick={props.onClick[i]} className={buttonClass} style={{ backgroundImage: tileUrls[color] }}>
-      {props.text && props.text[i]}
+      {props.labels && props.labels[i]}
     </button>
   );
 
