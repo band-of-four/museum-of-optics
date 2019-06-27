@@ -103,7 +103,7 @@ export default class ColorTilesGame extends React.Component {
     return (
       <div className="message-fade-in">
         <ActionLayout primary={['Вперед, к приключениям!', { onClick: this.onClickWinButton }]}>
-          <p className="center">Поздравляю, твой обряд инициации закончен!</p>
+          <p className="center">Запомни эти цвета! А теперь - в путь!</p>
         </ActionLayout>
       </div>
     );
