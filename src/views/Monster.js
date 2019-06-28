@@ -15,6 +15,7 @@ export default class Monster extends React.Component {
 
   render() {
     const monster = monsters[this.props.monsterId];
+    monster.fx = monster.fx || [];
     return (
       <View id={this.props.id} activePanel={this.state.view}>
         {this.renderIntroPanel(monster)}
@@ -27,7 +28,7 @@ export default class Monster extends React.Component {
 
   setView = (view) => () => this.setState({ view });
 
-  renderIntroPanel({ name, sprite, description }) {
+  renderIntroPanel({ name, sprite, description, fx }) {
     return (
       <Panel id="monster-intro" theme="white">
         <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="quest-map" />}>
@@ -37,7 +38,9 @@ export default class Monster extends React.Component {
           primary={['В бой', { onClick: this.setView('monster-action') }]}
           secondary={['Подсказка', { onClick: this.setView('monster-hint') }]}>
           <img className="block-image" alt={name} src={sprite} />
-          <p>{description}</p>
+          <p className={fx.includes('mirror-text') ? 'fx-mirror-x' : ''}>
+            {description}
+          </p>
         </ActionLayout>
       </Panel>
     );
