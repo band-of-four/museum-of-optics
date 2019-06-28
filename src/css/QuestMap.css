@@ -37,10 +37,47 @@
   fill: none;
 }
 
-/* Source: https://www.heropatterns.com/ */
-.map-container {
+.map-container, .map-help-container {
   padding: 16px;
   text-align: center;
   background: #fff;
+  /* Source: https://www.heropatterns.com/ */
   background-image: url('/img/hero-patterns-topography.svg');
+}
+
+.map-help-container {
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.map-help-overflow {
+  padding: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.map-help-button {
+  display: flex;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  color: #fff;
+  background: #587fa6;
+  opacity: 0.5;
+  border: 0;
+  border-radius: 10px;
+  outline: none;
+
+  transition: opacity .3s;
+}
+
+.map-help-button:active {
+  opacity: 1;
+}
+
+.map-help-button__content {
+  font-size: 20px;
 }
