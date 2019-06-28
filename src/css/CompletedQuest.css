@@ -1,0 +1,10 @@
+.completed-quest {
+  flex: 1;
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  text-align: center;
+}

@@ -2,9 +2,7 @@ import React from 'react';
 import { View, Panel, PanelHeader } from '@vkontakte/vkui';
 import ActionLayout from '../components/ActionLayout';
 
-export default function Intro({ id, gender, startQuest }) {
-  const genderify = (m, f) => gender === 'male' ? m : f;
-
+export default function Intro({ id, startQuest, genderify }) {
   return (
     <View id={id} activePanel="intro-main">
       <Panel id="intro-main" theme="white">

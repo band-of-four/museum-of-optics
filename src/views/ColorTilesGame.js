@@ -115,5 +115,5 @@ export default class ColorTilesGame extends React.Component {
     );
   }
 
-  onClickWinButton = () => this.props.onGameComplete(this.state.colors);
+  onClickWinButton = () => this.props.onCompletion(this.state.colors);
 }

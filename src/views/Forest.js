@@ -57,7 +57,7 @@ export default class Forest extends React.Component {
         this.setState({ letters, letterTransition: index });
         setTimeout(() => {
           if (verifyForestCode(this.props.colors, this.state.letters)) {
-            this.props.onCompletion(this.state.letters);
+            this.props.onCompletion();
           }
           else {
             /* Remove the transition clas to ensure the animation is correctly replayed
