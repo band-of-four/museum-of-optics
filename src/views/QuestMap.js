@@ -20,13 +20,9 @@ export default function QuestMap({ id, go, savestate, attachOnTransition }) {
     <View id={id} activePanel={view}>
       <Panel id="quest-map-main" theme="white">
         <PanelHeader left={<PanelHeaderBack onClick={go} data-to="home" />}>Карта</PanelHeader>
-        <FixedLayout vertical="top">
-          <div className="map-help-overflow">
-            <button className="map-help-button" onClick={() => setView('quest-map-help')}>
-              <span className="map-help-button__content"><Icon28HelpOutline /></span>
-            </button>
-          </div>
-        </FixedLayout>
+          <button className="map-help-toggle" onClick={() => setView('quest-map-help')}>
+            <Icon28HelpOutline />
+          </button>
         <div className="map-container">
           <svg className="map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 264">
             {nodeLocations.map(renderMapNode(savestate, go))}

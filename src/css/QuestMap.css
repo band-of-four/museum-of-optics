@@ -51,13 +51,11 @@
   box-sizing: border-box;
 }
 
-.map-help-overflow {
-  padding: 16px;
-  display: flex;
-  justify-content: flex-end;
-}
+.map-help-toggle {
+  position: fixed;
+  margin: 16px;
+  right: 0;
 
-.map-help-button {
   display: flex;
   justify-content: center;
 
@@ -74,10 +72,6 @@
   transition: opacity .3s;
 }
 
-.map-help-button:active {
+.map-help-toggle:active {
   opacity: 1;
-}
-
-.map-help-button__content {
-  font-size: 20px;
 }
