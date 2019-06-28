@@ -56,8 +56,3 @@
 .ColorTiles__container--inline > div {
   flex-shrink: 0;
 }
-
-.ColorTiles-b { background-image: url('/img/tiles/blue.png'); }
-.ColorTiles-r { background-image: url('/img/tiles/red.png'); }
-.ColorTiles-y { background-image: url('/img/tiles/yellow.png'); }
-.ColorTiles-g { background-image: url('/img/tiles/green.png'); }
