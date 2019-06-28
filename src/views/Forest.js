@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Panel, PanelHeader, FixedLayout, ActionSheet, Tappable } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader, ActionSheet, Tappable } from '@vkontakte/vkui';
 import ActionLayout from '../components/ActionLayout';
 import ColorTiles from '../components/ColorTiles';
 import '../css/Forest.css';
+import { forestLetters, verifyForestCode } from '../lib/forest';
 
 export default class Forest extends React.Component {
   constructor(props) {
@@ -25,18 +26,22 @@ export default class Forest extends React.Component {
     return (
       <View id={this.props.id} activePanel={this.state.view} popout={this.state.popout}>
         <Panel id="forest-intro" theme="white">
-          <PanelHeader>Лес</PanelHeader>
+          <PanelHeader>Лес приветствует тебя</PanelHeader>
           <ActionLayout primary={['Начнем', { onClick: () => this.setState({ view: 'forest-code' }) }]}>
-            <p className="center">
-              Лес приветствует тебя<br/>Тут проходит финальная часть инициации. Говорят, что разноцветные деревья в этом лесу хранят ключи, необходимые для вступления в Орден Оптики, и что у каждого этот ключ свой. Чтобы завершить обряд собери свой ключ.
+            <p>
+              Добро пожаловать на финальную часть инициации!
+            </p>
+            <p>
+              Для вступления в Орден Оптики тебе нужен свой, личный ключ, которого нет ни у кого.
+            </p>
+            <p>
+              Найти его ты сможешь в лесу, среди разноцветных деревьев.
             </p>
           </ActionLayout>
         </Panel>
         <Panel id="forest-code" theme="white" centered>
           <PanelHeader>Лес</PanelHeader>
-          <FixedLayout vertical="top">
-            <p className="center">Собери свой ключ с помощью разноцветных деревьев Леса!</p>
-          </FixedLayout>
+          <p className="center">Собери свой ключ с помощью разноцветных деревьев Леса!</p>
           <ColorTiles inline buttonClass="forest-button" colors={this.props.colors} labels={letterLabels}
             onClick={this.onClickLetterHandlers} />
         </Panel>
@@ -45,13 +50,21 @@ export default class Forest extends React.Component {
   }
 
   showLetterPopout = (index) => () => {
-    const letters = ['α', 'β', 'λ', 'μ'].map((letter, key) => {
+    const letters = forestLetters.map((letter, key) => {
       const onClick = () => {
         const letters = this.state.letters.slice();
         letters[index] = letter;
         this.setState({ letters, letterTransition: index });
-        // remove the transition class so it reapplies correctly if the popout is requested for the same index
-        setTimeout(() => this.setState({ letterTransition: null }), 300);
+        setTimeout(() => {
+          if (verifyForestCode(this.props.colors, this.state.letters)) {
+            this.props.onCompletion(this.state.letters);
+          }
+          else {
+            /* Remove the transition clas to ensure the animation is correctly replayed
+             * when the popout is requested for the same index */
+            this.setState({ letterTransition: null });
+          }
+        }, /* wait for the letter animation to complete before altering the view */ 300);
       }
       return (
         <Tappable key={key} className="forest-popout__letter" onClick={onClick}>{letter}</Tappable>
