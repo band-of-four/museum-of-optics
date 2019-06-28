@@ -96,7 +96,7 @@ self.__precacheManifest = [
     "url": "/museum-of-optics/static/css/2.c945ad26.chunk.css"
   },
   {
-    "revision": "e39d6334c0979abc90a9ff69a734543a",
+    "revision": "92c669985925c080b2ebbb29bd50575d",
     "url": "/museum-of-optics/index.html"
   }
 ];
