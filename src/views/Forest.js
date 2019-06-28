@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Panel, PanelHeader, ActionSheet, Tappable } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader, ActionSheet, Tappable, FixedLayout } from '@vkontakte/vkui';
 import ActionLayout from '../components/ActionLayout';
 import ColorTiles from '../components/ColorTiles';
 import '../css/Forest.css';
@@ -41,9 +41,14 @@ export default class Forest extends React.Component {
         </Panel>
         <Panel id="forest-code" theme="white" centered>
           <PanelHeader>Лес</PanelHeader>
-          <p className="center">Собери свой ключ с помощью разноцветных деревьев Леса!</p>
+          <FixedLayout className="forest-top-message" vertical="top">
+            <p className="forest-top-message__p">Собери свой ключ с помощью разноцветных деревьев Леса!</p>
+          </FixedLayout>
           <ColorTiles inline buttonClass="forest-button" colors={this.props.colors} labels={letterLabels}
             onClick={this.onClickLetterHandlers} />
+          <FixedLayout className="forest-top-message" vertical="bottom">
+            <p className="forest-top-message__p">Внимательно посмотри на деревья... Возможно, они что-то скрывают?</p>
+          </FixedLayout>
         </Panel>
       </View>
     );

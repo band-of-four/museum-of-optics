@@ -50,7 +50,8 @@ export default class App extends React.Component {
         {/* Intro & Find Your Colors */}
         <Intro id="intro" genderify={this.genderify}
           startQuest={() => this.setState({ view: 'color-tiles-game' })} />
-        <ColorTilesGame id="color-tiles-game" onCompletion={this.saveGameColors} />
+        <ColorTilesGame id="color-tiles-game" onCompletion={this.saveGameColors}
+          genderify={this.genderify} />
         {/* Main quest */}
         <QuestMap id="quest-map" go={this.go} savestate={this.state.savestate}
           attachOnTransition={this.assignQuestMapOnTransition} />

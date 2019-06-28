@@ -80,7 +80,7 @@ export default class ColorTilesGame extends React.Component {
           </ColorTiles>
           {view === INIT && <FixedLayout vertical="bottom">
             <p className="tile-init-tip">
-              Дойди до зала с разноцветными плитками на полу и встань лицом к каталогу Аббе.
+              Дойди до зала с разноцветными плитками на полу и встань в начало, лицом к каталогу Аббе.
               Выбери одну из двух плиток посередине.
             </p>
           </FixedLayout>}
@@ -109,7 +109,13 @@ export default class ColorTilesGame extends React.Component {
     return (
       <div className="message-fade-in">
         <ActionLayout primary={['Вперед, к приключениям!', { onClick: this.onClickWinButton }]}>
-          <p className="center">Запомни эти цвета, а теперь — в путь!</p>
+          <p className="center">
+            Твои цвета помогут тебе в Оптическом Лесу,
+            но добраться до него ты {this.props.genderify('должен сам', 'должна сама')}.
+          </p>
+          <p className="center">
+            Чтобы не потеряться, следуй по карте.
+          </p>
         </ActionLayout>
       </div>
     );
