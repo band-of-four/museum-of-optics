@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Panel, PanelHeader, FixedLayout } from '@vkontakte/vkui';
 import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack';
 import Icon28HelpOutline from '@vkontakte/icons/dist/28/help_outline';
 import '../css/QuestMap.css';
 import { nodeLocations, computePaths, isForestUnlocked } from '../lib/savestate';
 
-export default function QuestMap({ id, go, savestate }) {
+export default function QuestMap({ id, go, savestate, attachOnTransition }) {
   const [view, setView] = useState('quest-map-main');
+
+  const mapBottomRef = useRef(null);
+  useEffect(() => {
+    attachOnTransition((from) => {
+      from === 'color-tiles-game' && mapBottomRef.current &&
+        requestAnimationFrame(() => mapBottomRef.current.scrollIntoView({ behavior: 'smooth' }));
+    })
+  }, []);
+
   return (
     <View id={id} activePanel={view}>
       <Panel id="quest-map-main" theme="white">
@@ -24,6 +33,7 @@ export default function QuestMap({ id, go, savestate }) {
             {renderForest(savestate, go)}
             {renderPaths(savestate)}
           </svg>
+          {<div ref={mapBottomRef} />}
         </div>
       </Panel>
       <Panel id="quest-map-help" theme="white" centered>

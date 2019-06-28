@@ -15,7 +15,7 @@ import Forest from './views/Forest';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { view: null, perViewProps: {}, vk: null, colors: null, savestate: null };
+    this.state = { view: null, perViewProps: {}, vk: null, colors: null, savestate: null, onTransition: {} };
   }
 
   componentDidMount() {
@@ -40,13 +40,14 @@ export default class App extends React.Component {
       );
     }
     return (
-      <Root activeView={this.state.view}>
+      <Root activeView={this.state.view} onTransition={this.onTransition}>
         {/* Intro & Find Your Colors */}
         <Intro id="intro" gender={this.state.vk.user.gender}
           startQuest={() => this.setState({ view: 'color-tiles-game' })} />
         <ColorTilesGame id="color-tiles-game" onGameComplete={this.saveGameColors} />
         {/* Main quest */}
-        <QuestMap id="quest-map" go={this.go} savestate={this.state.savestate} />
+        <QuestMap id="quest-map" go={this.go} savestate={this.state.savestate}
+          attachOnTransition={this.assignQuestMapOnTransition} />
         <Monster id="monster" go={this.go} send={this.state.vk && this.state.vk.send}
           savestate={this.state.savestate} updateSavestate={this.updateSavestate}
           {...this.state.perViewProps.monster} />
@@ -60,6 +61,14 @@ export default class App extends React.Component {
           } : undefined} />
       </Root>
     );
+  }
+
+  assignQuestMapOnTransition = (callback) => {
+    this.setState({ onTransition: { ...this.state.onTransition, 'quest-map': callback } });
+  }
+
+  onTransition = ({ from, to }) => {
+    this.state.onTransition[to] && this.state.onTransition[to](from);
   }
 
   go = (e) => {
