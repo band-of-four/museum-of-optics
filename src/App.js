@@ -42,7 +42,8 @@ export default class App extends React.Component {
     return (
       <Root activeView={this.state.view}>
         {/* Intro & Find Your Colors */}
-        <Intro id="intro" startQuest={() => this.setState({ view: 'color-tiles-game' })} />
+        <Intro id="intro" gender={this.state.vk.user.gender}
+          startQuest={() => this.setState({ view: 'color-tiles-game' })} />
         <ColorTilesGame id="color-tiles-game" onGameComplete={this.saveGameColors} />
         {/* Main quest */}
         <QuestMap id="quest-map" go={this.go} savestate={this.state.savestate} />

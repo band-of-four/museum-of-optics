@@ -4,7 +4,7 @@ const devMode = process.env.NODE_ENV === 'development';
 
 export function setupVkIntegration(integrationCallback) {
   if (devMode) {
-    integrationCallback(new Vk(null, 'dev-access-token'));
+    integrationCallback(new Vk({ sex: 0 }, 'dev-access-token'));
     return;
   }
 
@@ -33,7 +33,7 @@ export function setupVkIntegration(integrationCallback) {
 
 export class Vk {
   constructor(user, accessToken) {
-    this.user = user;
+    this.user = { ...user, gender: user.sex === 1 ? 'female' : 'male' };
     this.accessToken = accessToken;
     this.callbacks = {};
     connect.subscribe(this.handleResponse);

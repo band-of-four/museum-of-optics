@@ -1,8 +1,13 @@
 .tile-directions {
-  margin: 12vh auto 0;
+  margin: 32px auto 0;
   max-width: 232px;
 
   font-size: 1.25em;
+  text-align: center;
+}
+
+.tile-init-tip {
+  padding: 16px;
   text-align: center;
 }
 

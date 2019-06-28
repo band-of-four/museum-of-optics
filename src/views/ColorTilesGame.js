@@ -78,6 +78,12 @@ export default class ColorTilesGame extends React.Component {
             {(view === RETRY || view === RETRY_INIT_TRANSITION) && this.renderRetryMessage()}
             {view === WIN && this.renderWinMessage()}
           </ColorTiles>
+          {view === INIT && <FixedLayout vertical="bottom">
+            <p className="tile-init-tip">
+              Дойди до зала с разноцветными плитками на полу и встань лицом к каталогу Аббе.
+              Выбери одну из двух плиток посередине.
+            </p>
+          </FixedLayout>}
         </Panel>
       </View>
     );
@@ -103,7 +109,7 @@ export default class ColorTilesGame extends React.Component {
     return (
       <div className="message-fade-in">
         <ActionLayout primary={['Вперед, к приключениям!', { onClick: this.onClickWinButton }]}>
-          <p className="center">Запомни эти цвета! А теперь - в путь!</p>
+          <p className="center">Запомни эти цвета, а теперь — в путь!</p>
         </ActionLayout>
       </div>
     );

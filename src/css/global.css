@@ -3,6 +3,12 @@ p {
   line-height: 1.3em;
 }
 
+@media (min-width: 400px) {
+  p {
+    font-size: 18px;
+  }
+}
+
 .center {
   text-align: center;
 }
