@@ -8,6 +8,25 @@
 
   /* Reset default button styles */
   border: 0;
+
+  position: relative;
+}
+
+.ColorTiles__button__fill {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: radial-gradient(#0a0a0a 10%, transparent);
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.ColorTiles__button__fill:active {
+  opacity: 0.2;
 }
 
 .ColorTiles__wrapper {
@@ -37,3 +56,8 @@
 .ColorTiles__container--inline > div {
   flex-shrink: 0;
 }
+
+.ColorTiles-b { background-image: url('/img/tiles/blue.png'); }
+.ColorTiles-r { background-image: url('/img/tiles/red.png'); }
+.ColorTiles-y { background-image: url('/img/tiles/yellow.png'); }
+.ColorTiles-g { background-image: url('/img/tiles/green.png'); }
