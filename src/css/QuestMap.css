@@ -42,7 +42,7 @@
   text-align: center;
   background: #fff;
   /* Source: https://www.heropatterns.com/ */
-  background-image: url('/img/hero-patterns-topography.svg');
+  background-image: url('../img/hero-patterns-topography.svg');
 }
 
 .map-help-container {
