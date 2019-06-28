@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Panel, PanelHeader, FixedLayout } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader } from '@vkontakte/vkui';
 import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack';
 import Icon28HelpOutline from '@vkontakte/icons/dist/28/help_outline';
 import '../css/QuestMap.css';
@@ -20,9 +20,9 @@ export default function QuestMap({ id, go, savestate, attachOnTransition }) {
     <View id={id} activePanel={view}>
       <Panel id="quest-map-main" theme="white">
         <PanelHeader left={<PanelHeaderBack onClick={go} data-to="home" />}>Карта</PanelHeader>
-          <button className="map-help-toggle" onClick={() => setView('quest-map-help')}>
-            <Icon28HelpOutline />
-          </button>
+        <button className="map-help-toggle" onClick={() => setView('quest-map-help')}>
+          <Icon28HelpOutline />
+        </button>
         <div className="map-container">
           <svg className="map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 264">
             {nodeLocations.map(renderMapNode(savestate, go))}
@@ -66,15 +66,9 @@ export default function QuestMap({ id, go, savestate, attachOnTransition }) {
 }
 
 const renderMapNode = (savestate, go) => ({ x, y, id }) => {
-  switch (savestate[id]) {
-    case 'completed':
-      return <circle key={id} cx={x} cy={y} r="6" className="map-node--completed" />;
-    case 'locked':
-      return <circle key={id} cx={x} cy={y} r="6" className="map-node--locked" />
-    case 'available':
-      return <circle key={id} cx={x} cy={y} r="6" className="map-node--available"
-        onClick={go} data-to="monster" data-monster-id={id} />;
-  }
+  const state = savestate[id];
+  const props = state === 'available' ? { onClick: go, 'data-to': 'monster', 'data-monster-id': id } : {};
+  return <circle key={id} cx={x} cy={y} r="6" className={`map-node--${state}`} {...props} />;
 };
 
 const renderForest = (savestate, go) => {

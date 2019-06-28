@@ -25,11 +25,11 @@ export default class App extends React.Component {
   componentDidMount() {
     setupVkIntegration(async (vk) => {
       const storedColors = await vk.storage.get('colors');
-      const colors = (storedColors && storedColors != "") ? JSON.parse(storedColors) : null;
+      const colors = (storedColors && storedColors !== "") ? JSON.parse(storedColors) : null;
       const storedState = colors && await vk.storage.get('savestate');
-      const savestate = (storedState && storedState != "") ? JSON.parse(storedState) : initialSavestate;
+      const savestate = (storedState && storedState !== "") ? JSON.parse(storedState) : initialSavestate;
       const storedCompletion = colors && await vk.storage.get('completion');
-      const completionDate = (storedCompletion && storedCompletion != "") ? new Date(storedCompletion) : null;
+      const completionDate = (storedCompletion && storedCompletion !== "") ? new Date(storedCompletion) : null;
 
       const view = completionDate ? 'completed-quest' : colors ? 'quest-map' : 'intro';
 
@@ -58,7 +58,7 @@ export default class App extends React.Component {
           savestate={this.state.savestate} updateSavestate={this.updateSavestate}
           {...this.state.perViewProps.monster} />
         <Forest id="forest" go={this.go} colors={this.state.colors} onCompletion={this.finishQuest} />
-        <CompletedQuest id="completed-quest" go={this.go} user={this.state.vk && this.state.vk.user}
+        <CompletedQuest id="completed-quest" go={this.go}
           completionDate={this.state.completionDate} genderify={this.genderify} />
         {/* Development tools (TODO: delet this) */}
         <Home id="home" user={this.state.vk && this.state.vk.user} go={this.go}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Panel, PanelHeader, Avatar } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader } from '@vkontakte/vkui';
 import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack';
 import '../css/CompletedQuest.css';
 

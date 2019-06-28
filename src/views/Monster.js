@@ -81,7 +81,7 @@ export default class Monster extends React.Component {
   applyQrCode = (correctQr) => () => {
     this.props.send('VKWebAppOpenQR', {}, {
       VKWebAppOpenQRResult: async ({ qr_data }) => {
-        const matchesExpected = qr_data == correctQr;
+        const matchesExpected = qr_data === correctQr;
         if (matchesExpected) {
           const savestate = updateSavestateOnCompletion(this.props.savestate, this.props.monsterId);
           await this.props.updateSavestate(savestate);
