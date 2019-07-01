@@ -1,23 +1,23 @@
 self.__precacheManifest = [
   {
-    "revision": "85f7d86af33e306890367c63b19347b3",
-    "url": "/museum-of-optics/static/media/forgotten_fortress_defeated.85f7d86a.png"
+    "revision": "84f6ee0a38af3abc8f20f0f377c385c2",
+    "url": "/museum-of-optics/static/media/medusa.84f6ee0a.png"
   },
   {
-    "revision": "6505855d3b240742c84a",
-    "url": "/museum-of-optics/static/css/main.5417409c.chunk.css"
+    "revision": "5f7496e669fb24054e14",
+    "url": "/museum-of-optics/static/css/main.9dd4d4cc.chunk.css"
   },
   {
     "revision": "075a6a8dfff59410a222",
     "url": "/museum-of-optics/static/js/runtime~main.7d119e98.js"
   },
   {
-    "revision": "aca6e4c36fb35907ef2ac3d75d76b94e",
-    "url": "/museum-of-optics/static/media/cylindemon_defeated.aca6e4c3.png"
+    "revision": "197f94831f48ab49a35c0d8d5c1c1819",
+    "url": "/museum-of-optics/static/media/hero-patterns-topography.197f9483.svg"
   },
   {
-    "revision": "b13ad892c23a854fb5b2",
-    "url": "/museum-of-optics/static/js/2.a9a8a278.chunk.js"
+    "revision": "3e37deee27881931b62c",
+    "url": "/museum-of-optics/static/js/2.c8cf2421.chunk.js"
   },
   {
     "revision": "b330c4866a6deab67ec708fbcc89c8de",
@@ -56,12 +56,12 @@ self.__precacheManifest = [
     "url": "/museum-of-optics/static/media/forgotten_fortress.08ac9a3c.png"
   },
   {
-    "revision": "6505855d3b240742c84a",
-    "url": "/museum-of-optics/static/js/main.f924f7c3.chunk.js"
+    "revision": "85f7d86af33e306890367c63b19347b3",
+    "url": "/museum-of-optics/static/media/forgotten_fortress_defeated.85f7d86a.png"
   },
   {
-    "revision": "84f6ee0a38af3abc8f20f0f377c385c2",
-    "url": "/museum-of-optics/static/media/medusa.84f6ee0a.png"
+    "revision": "5f7496e669fb24054e14",
+    "url": "/museum-of-optics/static/js/main.3508cac4.chunk.js"
   },
   {
     "revision": "3974d41f2a232e64250da928cd873c37",
@@ -108,11 +108,15 @@ self.__precacheManifest = [
     "url": "/museum-of-optics/static/media/cylindemon.e9ebff9b.png"
   },
   {
-    "revision": "b13ad892c23a854fb5b2",
+    "revision": "aca6e4c36fb35907ef2ac3d75d76b94e",
+    "url": "/museum-of-optics/static/media/cylindemon_defeated.aca6e4c3.png"
+  },
+  {
+    "revision": "3e37deee27881931b62c",
     "url": "/museum-of-optics/static/css/2.c945ad26.chunk.css"
   },
   {
-    "revision": "c0134f78db005ba78012d31e868892e3",
+    "revision": "5fa08517484d23e9dee3f2c6710958ce",
     "url": "/museum-of-optics/index.html"
   }
 ];
