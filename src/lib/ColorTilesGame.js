@@ -12,6 +12,14 @@ export function computeTurn(color, turnstate) {
   if (color !== field[x][y]) // wrong answer
     return null;
 
+  let [nextDirection, nextTurnstate] = computeNextTile(x, y, routes);
+  while (color === field[nextTurnstate.x][nextTurnstate.y]) {
+    [nextDirection, nextTurnstate] = computeNextTile(x, y, routes);
+  }
+  return [nextDirection, nextTurnstate];
+}
+
+function computeNextTile(x, y, routes) {
   // compute next tile
   let direction = Math.floor(Math.random() * 4); // random int [0; 3]
   while (
