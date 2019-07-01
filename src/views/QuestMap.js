@@ -36,7 +36,9 @@ export default function QuestMap({ id, go, savestate, attachOnTransition }) {
 
 const renderMapNode = (savestate, go) => ({ x, y, id }) => {
   const state = savestate[id];
-  const props = state === 'available' ? { onClick: go, 'data-to': 'monster', 'data-monster-id': id } : {};
+  const props = (state !== 'locked' && id !== 0)
+    ? { onClick: go, 'data-to': 'monster', 'data-monster-id': id }
+    : {};
   return <circle key={id} cx={x} cy={y} r="6" className={`map-node--${state}`} {...props} />;
 };
 

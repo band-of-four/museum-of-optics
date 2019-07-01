@@ -10,12 +10,12 @@ import { updateSavestateOnCompletion } from '../lib/savestate';
 export default class Monster extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { view: 'monster-intro' }
+    const completed = props.savestate[props.monsterId] === 'completed';
+    this.state = { view: completed ? 'monster-result' : 'monster-intro', monsterId: props.monsterId, completed }
   }
 
   render() {
     const monster = monsters[this.props.monsterId];
-    monster.fx = monster.fx || [];
     return (
       <View id={this.props.id} activePanel={this.state.view}>
         {this.renderIntroPanel(monster)}
@@ -28,7 +28,7 @@ export default class Monster extends React.Component {
 
   setView = (view) => () => this.setState({ view });
 
-  renderIntroPanel({ name, sprite, description, fx }) {
+  renderIntroPanel({ name, sprite, description, fx = [] }) {
     return (
       <Panel id="monster-intro" theme="white">
         <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="quest-map" />}>
