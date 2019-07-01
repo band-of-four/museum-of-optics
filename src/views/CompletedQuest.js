@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, Panel, PanelHeader } from '@vkontakte/vkui';
-import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack';
+import { View, Panel, PanelHeader, Button } from '@vkontakte/vkui';
 import '../css/CompletedQuest.css';
 
-export default function CompletedQuest({ id, go, genderify, completionDate }) {
+export default function CompletedQuest({ id, go, genderify, completionDate, resetGame }) {
   if (!completionDate) return null;
 
   return (
@@ -21,6 +20,7 @@ export default function CompletedQuest({ id, go, genderify, completionDate }) {
             <p>
               Квест пройден {completionDate.toLocaleDateString('ru-RU')}
             </p>
+            <Button onClick={resetGame}>Начать заново</Button>
           </section>
         </div>
       </Panel>
