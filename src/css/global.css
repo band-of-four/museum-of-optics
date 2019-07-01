@@ -25,5 +25,5 @@ p {
 }
 
 .fx-mirror-x {
-  transform: scaleX(-1);
+  transform: scaleY(-1);
 }
