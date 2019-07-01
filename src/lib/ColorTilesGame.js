@@ -65,9 +65,9 @@ export function computeInitTurn(color) {
 function explainTurn(direction, offset) {
   const textDirection =
     direction === 'up' ? 'Пройди прямо' :
-    direction === 'down' ? 'Обернись и пройди' :
-    direction === 'left' ? 'Развернись налево, пройди' :
-    direction === 'right' ? 'Развернись направо, пройди' : '';
+    direction === 'down' ? 'Развернись и пройди' :
+    direction === 'left' ? 'Повернись налево, пройди' :
+    direction === 'right' ? 'Повернись направо, пройди' : '';
   const textOffset =
     offset === 1 ? 'одну клетку' :
     offset === 2 ? 'две клетки' :
