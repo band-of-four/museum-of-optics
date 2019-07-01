@@ -6,21 +6,28 @@ export default function CompletedQuest({ id, go, genderify, completionDate, rese
   if (!completionDate) return null;
 
   return (
-    <View id={id} activePanel="completed-quest-main">
+    <View id={id} activePanel="completed-quest-main" header={false}>
       <Panel id="completed-quest-main" theme="white" centered>
-        <PanelHeader>Секреты Ордена Оптики</PanelHeader>
         <div className="completed-quest">
           <section>
-            <p>Поздравляю!</p>
-            <p>
-              Ты {genderify('нашел', 'нашла')} свой ключ, и теперь ты заслуживаешь звания Магистра Ордена Оптики!
+            <p className="completed-quest__p">
+              Поздравляю!
+            </p>
+            <p className="completed-quest__p">
+              Ты {genderify('нашел', 'нашла')} свой ключ, и теперь ты заслуживаешь звание
+            </p>
+            <p className="completed-quest__large">
+              Адепта Ордена Оптики
+            </p>
+            <p className="completed-quest__p">
+              Готовся к следующему бою!
             </p>
           </section>
           <section>
-            <p>
+            <p className="completed-quest__p">
               Квест пройден {completionDate.toLocaleDateString('ru-RU')}
             </p>
-            <Button onClick={resetGame}>Начать заново</Button>
+            {/* <Button onClick={resetGame}>Начать заново</Button> */}
           </section>
         </div>
       </Panel>

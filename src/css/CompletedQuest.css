@@ -8,7 +8,18 @@
 
   text-align: center;
 
-  background: #fff;
-  /* Source: https://www.heropatterns.com/ */
-  background-image: url('../img/hero-patterns-topography.svg');
+  background-color: #000;
+  background-image: url('../img/completed-quest.jpg');
+  background-size: cover;
+  background-position-y: 100%;
+  color: #fff;
+}
+
+.completed-quest__p {
+  font-size: 22px;
+}
+
+.completed-quest__large {
+  font-size: 26px;
+  font-weight: bold;
 }
