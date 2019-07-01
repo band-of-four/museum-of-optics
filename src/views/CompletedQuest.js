@@ -20,7 +20,7 @@ export default function CompletedQuest({ id, go, genderify, completionDate, rese
               Адепта Ордена Оптики
             </p>
             <p className="completed-quest__p">
-              Готовся к следующему бою!
+              Готовься к следующему бою!
             </p>
           </section>
           <section>
