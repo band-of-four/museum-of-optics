@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/museum-of-optics/precache-manifest.154dbf0c04c590a6d6ea7c3bbb93bd01.js"
+  "/museum-of-optics/precache-manifest.a23833fdb2da1a836243862760675306.js"
 );
 
 workbox.clientsClaim();
