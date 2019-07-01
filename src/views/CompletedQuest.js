@@ -12,8 +12,9 @@ export default function CompletedQuest({ id, go, genderify, completionDate }) {
         <PanelHeader>Секреты Ордена Оптики</PanelHeader>
         <div className="completed-quest">
           <section>
+            <p>Поздравляю!</p>
             <p>
-              Поздравляю! Ты {genderify('нашел', 'нашла')} свой ключ, и теперь ты заслуживаешь звания Магистра Ордена Оптики!
+              Ты {genderify('нашел', 'нашла')} свой ключ, и теперь ты заслуживаешь звания Магистра Ордена Оптики!
             </p>
           </section>
           <section>
