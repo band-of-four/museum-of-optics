@@ -14,7 +14,7 @@ import Nightmare from '../img/monsters/nightmare.png';
 import NightmareDefeated from '../img/monsters/nightmare_defeated.png';
 import Shadow from '../img/monsters/shadow.png';
 import ShadowDefeated from '../img/monsters/shadow_defeated.png';
-import Stereozavr from '../img/monsters/stereozavr.png';
+import Stereozavr from '../img/monsters/stereozavr.jpg';
 import StereozavrDefeated from '../img/monsters/stereozavr_defeated.png';
 import CylinDemon from '../img/monsters/cylindemon.png';
 import CylinDemonDefeated from '../img/monsters/cylindemon_defeated.png';
