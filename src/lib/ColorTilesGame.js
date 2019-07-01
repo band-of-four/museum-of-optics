@@ -23,10 +23,10 @@ function computeNextTile(x, y, routes) {
   // compute next tile
   let direction = Math.floor(Math.random() * 4); // random int [0; 3]
   while (
-    (direction == 0 && y == 0) ||
-    (direction == 1 && x == 0) ||
-    (direction == 2 && y == 5) ||
-    (direction == 3 && x == 5))
+    (direction === 0 && y === 0) ||
+    (direction === 1 && x === 0) ||
+    (direction === 2 && y === 5) ||
+    (direction === 3 && x === 5))
     direction = Math.floor(Math.random() * 4);
 
   let offset = 0;

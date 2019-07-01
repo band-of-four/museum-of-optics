@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Panel, PanelHeader, HeaderButton } from '@vkontakte/vkui';
-import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack';
 import Icon28DoneOutline from '@vkontakte/icons/dist/28/done_outline';
 
 export default function QuestMapHelp({ id, go }) {
@@ -14,8 +13,8 @@ export default function QuestMapHelp({ id, go }) {
         <div className="map-help-container">
           <svg className="map" xmlns="http://www.w3.org/2000/svg" width="78" height="78" viewBox="0 0 20.6 20.6">
             <g className="map-node--locked">
-              <path stroke-linejoin="bevel" d="M19.7 10.5a9.6 9.6 0 0 1-9.6 9.6 9.6 9.6 0 0 1-9.6-9.6A9.6 9.6 0 0 1 10.1 1a9.6 9.6 0 0 1 9.6 9.5z" />
-              <path stroke-linejoin="round" d="M6.6 9.2h2.2L5.4 13H9v3.6h2.2V13h3.5l-3.3-3.8h2.1l-3.4-4.7z" />
+              <path strokeLinejoin="bevel" d="M19.7 10.5a9.6 9.6 0 0 1-9.6 9.6 9.6 9.6 0 0 1-9.6-9.6A9.6 9.6 0 0 1 10.1 1a9.6 9.6 0 0 1 9.6 9.5z" />
+              <path strokeLinejoin="round" d="M6.6 9.2h2.2L5.4 13H9v3.6h2.2V13h3.5l-3.3-3.8h2.1l-3.4-4.7z" />
             </g>
           </svg>
           <p>
