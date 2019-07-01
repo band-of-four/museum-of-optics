@@ -5,10 +5,11 @@ import './css/global.css';
 import { setupVkIntegration } from './lib/vk';
 import { initialSavestate } from './lib/savestate';
 
-import Home from './views/Home';
+// import Home from './views/Home';
 import Intro from './views/Intro';
 import ColorTilesGame from './views/ColorTilesGame';
 import QuestMap from './views/QuestMap';
+import QuestMapHelp from './views/QuestMapHelp';
 import Monster from './views/Monster';
 import Forest from './views/Forest';
 import CompletedQuest from './views/CompletedQuest';
@@ -55,6 +56,7 @@ export default class App extends React.Component {
         {/* Main quest */}
         <QuestMap id="quest-map" go={this.go} savestate={this.state.savestate}
           attachOnTransition={this.assignQuestMapOnTransition} />
+        <QuestMapHelp id="quest-map-help" go={this.go} />
         <Monster id="monster" go={this.go} send={this.state.vk && this.state.vk.send}
           savestate={this.state.savestate} updateSavestate={this.updateSavestate}
           {...this.state.perViewProps.monster} />

@@ -1,4 +1,4 @@
-export const forestLetters = ['α', 'β', 'λ', 'μ'];
+export const forestLetters = ['α', 'β', 'λ', 'η'];
 
 const rosettaStone = {
   'r': 'α',
