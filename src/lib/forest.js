@@ -4,7 +4,7 @@ const rosettaStone = {
   'r': 'α',
   'g': 'β',
   'b': 'λ',
-  'y': 'μ'
+  'y': 'η'
 };
 
 export function verifyForestCode(colors, letters) {
