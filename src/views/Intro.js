@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Panel, PanelHeader } from '@vkontakte/vkui';
 import ActionLayout from '../components/ActionLayout';
 
-export default function Intro({ id, startQuest, genderify }) {
+export default function Intro({ id, startQuest, genderify, playerName }) {
   return (
     <View id={id} activePanel="intro-main">
       <Panel id="intro-main" theme="white">

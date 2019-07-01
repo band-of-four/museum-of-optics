@@ -37,7 +37,10 @@ export function setupVkIntegration(integrationCallback) {
 
 export class Vk {
   constructor(user, accessToken) {
-    this.user = { ...user, gender: user.sex === 1 ? 'female' : 'male' };
+    this.user = {
+      firstName: user.first_name || 'Странник',
+      gender: user.sex === 1 ? 'female' : 'male'
+    };
     this.accessToken = accessToken;
     this.callbacks = {};
     connect.subscribe(this.handleResponse);

@@ -50,6 +50,7 @@ export default class App extends React.Component {
       <Root activeView={this.state.view} onTransition={this.onTransition}>
         {/* Intro & Find Your Colors */}
         <Intro id="intro" genderify={this.genderify}
+          playerName={this.state.vk && this.state.vk.user.firstName}
           startQuest={() => this.setState({ view: 'color-tiles-game' })} />
         <ColorTilesGame id="color-tiles-game" onCompletion={this.saveGameColors}
           genderify={this.genderify} />
