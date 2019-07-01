@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/museum-of-optics/static/media/medusa.84f6ee0a.png"
   },
   {
-    "revision": "e767aece3eae6225effe",
-    "url": "/museum-of-optics/static/css/main.86db7572.chunk.css"
+    "revision": "fa299d73280fae4deb93",
+    "url": "/museum-of-optics/static/css/main.b094e4e4.chunk.css"
   },
   {
     "revision": "075a6a8dfff59410a222",
@@ -16,8 +16,8 @@ self.__precacheManifest = [
     "url": "/museum-of-optics/static/media/hero-patterns-topography.197f9483.svg"
   },
   {
-    "revision": "e44d973cabbf179ff335",
-    "url": "/museum-of-optics/static/js/2.cc758e8a.chunk.js"
+    "revision": "1237ed268b5469359794",
+    "url": "/museum-of-optics/static/js/2.ffba3d88.chunk.js"
   },
   {
     "revision": "b330c4866a6deab67ec708fbcc89c8de",
@@ -60,8 +60,8 @@ self.__precacheManifest = [
     "url": "/museum-of-optics/static/media/forgotten_fortress_defeated.85f7d86a.png"
   },
   {
-    "revision": "e767aece3eae6225effe",
-    "url": "/museum-of-optics/static/js/main.cb8dc72c.chunk.js"
+    "revision": "fa299d73280fae4deb93",
+    "url": "/museum-of-optics/static/js/main.a5fa134a.chunk.js"
   },
   {
     "revision": "3974d41f2a232e64250da928cd873c37",
@@ -96,8 +96,8 @@ self.__precacheManifest = [
     "url": "/museum-of-optics/static/media/shadow_defeated.2c14830e.png"
   },
   {
-    "revision": "3b2af9cebaaef88e5d982a33f142a118",
-    "url": "/museum-of-optics/static/media/stereozavr.3b2af9ce.png"
+    "revision": "aa4b10d7cebcc42186292fa442be4a4a",
+    "url": "/museum-of-optics/static/media/stereozavr.aa4b10d7.jpg"
   },
   {
     "revision": "549d24d42423edb47be17aa64fb1eaba",
@@ -112,11 +112,11 @@ self.__precacheManifest = [
     "url": "/museum-of-optics/static/media/cylindemon_defeated.aca6e4c3.png"
   },
   {
-    "revision": "e44d973cabbf179ff335",
-    "url": "/museum-of-optics/static/css/2.c945ad26.chunk.css"
+    "revision": "1237ed268b5469359794",
+    "url": "/museum-of-optics/static/css/2.d4e726f7.chunk.css"
   },
   {
-    "revision": "c522ab4b13ab1974bafda60d46c17a33",
+    "revision": "082b30a96a19f3d4cc4f304ea3cded0c",
     "url": "/museum-of-optics/index.html"
   }
 ];
