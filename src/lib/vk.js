@@ -2,6 +2,10 @@ import connect from '@vkontakte/vkui-connect';
 
 const devMode = process.env.NODE_ENV === 'development';
 
+// TODO: move this to a configurable option
+// const applicationId = 7017221; // development id
+const applicationId = 7040167;
+
 export function setupVkIntegration(integrationCallback) {
   if (devMode) {
     integrationCallback(new Vk({ sex: 0 }, 'dev-access-token'));
@@ -14,10 +18,10 @@ export function setupVkIntegration(integrationCallback) {
     switch (type) {
       case 'VKWebAppGetUserInfoResult':
         user = data;
-        connect.send("VKWebAppGetAuthToken", { app_id: 7017221 });
+        connect.send("VKWebAppGetAuthToken", { app_id: applicationId });
         break;
       case 'VKWebAppAccessTokenFailed':
-        connect.send("VKWebAppGetAuthToken", { app_id: 7017221 });
+        connect.send("VKWebAppGetAuthToken", { app_id: applicationId });
         break;
       case 'VKWebAppAccessTokenReceived':
         accessToken = data.access_token;
