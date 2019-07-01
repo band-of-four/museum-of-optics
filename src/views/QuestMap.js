@@ -19,7 +19,8 @@ export default function QuestMap({ id, go, savestate, attachOnTransition }) {
   return (
     <View id={id} activePanel={view}>
       <Panel id="quest-map-main" theme="white">
-        <PanelHeader left={<PanelHeaderBack onClick={go} data-to="home" />}>Карта</PanelHeader>
+        {/* <PanelHeader left={<PanelHeaderBack onClick={go} data-to="home" />}>Карта</PanelHeader> */}
+        <PanelHeader>Секреты Ордена Оптики</PanelHeader>
         <button className="map-help-toggle" onClick={() => setView('quest-map-help')}>
           <Icon28HelpOutline />
         </button>

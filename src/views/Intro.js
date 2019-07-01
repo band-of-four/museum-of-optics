@@ -6,7 +6,7 @@ export default function Intro({ id, startQuest, genderify }) {
   return (
     <View id={id} activePanel="intro-main">
       <Panel id="intro-main" theme="white">
-        <PanelHeader>Квест</PanelHeader>
+        <PanelHeader>Секреты Ордена Оптики</PanelHeader>
         <ActionLayout primary={['Начнем', { onClick: startQuest }]}>
           <p>
             Добро пожаловать в музей!

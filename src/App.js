@@ -61,9 +61,9 @@ export default class App extends React.Component {
         <Forest id="forest" go={this.go} colors={this.state.colors} onCompletion={this.finishQuest} />
         <CompletedQuest id="completed-quest" go={this.go}
           completionDate={this.state.completionDate} genderify={this.genderify} />
-        {/* Development tools (TODO: delet this) */}
-        <Home id="home" user={this.state.vk && this.state.vk.user} go={this.go}
-          resetSavestate={this.state.vk ? this.resetSavestate : undefined} />
+        {/* Development tools */}
+        {/* <Home id="home" user={this.state.vk && this.state.vk.user} go={this.go}
+          resetSavestate={this.state.vk ? this.resetSavestate : undefined} /> */}
       </Root>
     );
   }

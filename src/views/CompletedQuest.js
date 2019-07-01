@@ -9,16 +9,11 @@ export default function CompletedQuest({ id, go, genderify, completionDate }) {
   return (
     <View id={id} activePanel="completed-quest-main">
       <Panel id="completed-quest-main" theme="white" centered>
-        <PanelHeader left={<PanelHeaderBack onClick={go} data-to="home" />}>
-          Квест Музея Оптики
-        </PanelHeader>
+        <PanelHeader>Секреты Ордена Оптики</PanelHeader>
         <div className="completed-quest">
           <section>
             <p>
               Поздравляю! Ты {genderify('нашел', 'нашла')} свой ключ, и теперь ты заслуживаешь звания Магистра Ордена Оптики!
-            </p>
-            <p>
-              Покажи этот экран сотруднику музея и получи свой подарок :)
             </p>
           </section>
           <section>
